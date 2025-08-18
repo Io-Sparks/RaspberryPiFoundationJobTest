@@ -61,7 +61,12 @@ optimisation, testing, documentation, security, monitoring and observability.
 
 *** Io laughs out loud thinking when Gemini generates a single file
 that is the shortest possible path to doing what I asked.
-Said single file is added to the repo and committed on this commit: 
+Said single file is added to the repo and committed on this commit: 9b234d4ec366eb0e214b718056219a80ab9965d2
+
+To get the commit hash for the above
+`git log -1` + Copy and Paste
+
+
 
 
 

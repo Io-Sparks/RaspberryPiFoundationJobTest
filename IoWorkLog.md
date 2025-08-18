@@ -186,7 +186,7 @@ part of CI/CD.
 * Io works through the agent 
 prompts and hand coding himself 
 to get to a point where 
-this commit was made: <commit hash>.
+this commit was made: 9ac607ce90627f57a5a2099e0c115434cb0c3bcd.
 This commit moves the configuration 
 into the environment so that it can be tested
 and deployed in a mor automated way. 
@@ -201,6 +201,13 @@ for recreating as part of container image build
 `source .venv/bin/activate`
 `pip install dotenv`
 `pip freeze > requirements.txt` 
+
+this resulted in this commit: 02500f0fe1a61e25868f8444a14c6f8084b98dac
+
+* Io broke out the single file in to multiples 
+under this commit: bb28f45f10e13b28be987e9f894f66808d218ec3
+
+
 
 
 

@@ -77,9 +77,13 @@ about coding and having building on the breadth of my understanding.
 
 * Io refers back to the brief
 
-I review the file in my editor whilst I compose a prompt of 
-what I want to change or build in to the approach whilst also referring back 
-to the brief.
+I compose a prompt for setting up the context in how I want to work with
+the AI. So that I can explain my experience of software design and we can 
+check each others work whilst it writes everything for me.
+
+The brief I write sets us up for what I want to change or build in to 
+the approach whilst I bake in subtle requirements from
+referring back to the brief.
 
 ```
 In the file you have generated I want to make some changes with you. 

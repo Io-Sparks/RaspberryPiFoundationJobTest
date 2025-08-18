@@ -195,6 +195,13 @@ and deployed in a mor automated way.
 
 * Io returned 
 
+Io wanted to create a venv requirements.txt so created a new environment 
+for recreating as part of container image build 
+`python -m venv .venv`
+`source .venv/bin/activate`
+`pip install dotenv`
+`pip freeze > requirements.txt` 
+
 
 
 

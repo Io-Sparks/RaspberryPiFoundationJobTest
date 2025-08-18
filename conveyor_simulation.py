@@ -84,11 +84,11 @@ class Producer(threading.Thread):
     A thread that produces items and puts them on the conveyor belt.
     """
 
-    def __init__(self, belt: ConveyorBelt, stop_event: threading.Event):
+    def __init__(self, belt: ConveyorBelt, stop_event: threading.Event, producer_id: int):
         super().__init__()
         self.belt = belt
         self.stop_event = stop_event
-        self.name = f"Producer-{self.ident % 100}"
+        self.name = f"Producer-{producer_id}"
 
     def run(self):
         while not self.stop_event.is_set():
@@ -116,11 +116,11 @@ class Consumer(threading.Thread):
     A thread that takes items from the conveyor belt and "consumes" them.
     """
 
-    def __init__(self, belt: ConveyorBelt, stop_event: threading.Event):
+    def __init__(self, belt: ConveyorBelt, stop_event: threading.Event, consumer_id: int):
         super().__init__()
         self.belt = belt
         self.stop_event = stop_event
-        self.name = f"Consumer-{self.ident % 100}"
+        self.name = f"Consumer-{consumer_id}"
 
     def run(self):
         while not self.stop_event.is_set():
@@ -159,14 +159,14 @@ def main():
 
     threads = []
     # Create and start producer threads
-    for _ in range(NUM_PRODUCERS):
-        producer = Producer(belt, stop_event)
+    for i in range(NUM_PRODUCERS):
+        producer = Producer(belt, stop_event, i + 1)
         threads.append(producer)
         producer.start()
 
     # Create and start consumer threads
-    for _ in range(NUM_CONSUMERS):
-        consumer = Consumer(belt, stop_event)
+    for i in range(NUM_CONSUMERS):
+        consumer = Consumer(belt, stop_event, i + 1)
         threads.append(consumer)
         consumer.start()
 

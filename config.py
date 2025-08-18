@@ -1,5 +1,9 @@
 
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from a .env file if it exists
+load_dotenv()
 
 # --- Configuration ---
 BELT_CAPACITY = int(os.environ.get("BELT_CAPACITY", 10))

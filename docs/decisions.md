@@ -24,3 +24,10 @@ This document records the key architectural and design decisions made during the
 *   **Reasoning:**
     *   **Single Responsibility Principle:** This module's only job is to handle configuration, providing a clean interface to the rest of the application.
     *   **Defaults:** It provides sensible default values, making the application easier to run in local development environments where not all variables might be set.
+
+**Decision:** Use the `python-dotenv` library to load a `.env` file for local development convenience.
+
+*   **Reasoning:**
+    *   **Developer Experience:** Automates the loading of local configuration, removing the need for developers to manually `export` environment variables in their shell.
+    *   **Environment Parity:** Allows local development to mimic the use of environment variables in production without requiring complex setup.
+    *   **Safe for Production:** The `load_dotenv()` function fails silently if no `.env` file is found, making it safe to keep in the code for production/CI/CD environments where the file will not and should not exist.

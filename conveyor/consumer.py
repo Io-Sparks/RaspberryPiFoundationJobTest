@@ -14,24 +14,24 @@ class Consumer(threading.Thread):
         self.belt = belt
         self.stop_event = stop_event
         self.name = f"Consumer-{consumer_id}"
+        self.items_consumed = 0
 
     def run(self):
         while not self.stop_event.is_set():
             try:
-                # 1. Take an item from the belt
-                item = self.belt.take_item(self.name)
-
-                # 2. "Consume" the item
-                consumption_time = random.uniform(0.2, 0.8)
-                print(
-                    f"{self.name}: Consuming item {item} (will take {consumption_time:.2f}s)...")
-                time.sleep(consumption_time)
-                print(f"{self.name}: Finished consuming item {item}.")
+                # 1. Take an item from the belt with a timeout
+                item = self.belt.take(timeout=1.0)
+                if item is not None:
+                    self.items_consumed += 1
+                    # 2. "Consume" the item
+                    consumption_time = random.uniform(0.2, 0.8)
+                    print(f"{self.name}: Consumed item {item}.")
+                    time.sleep(consumption_time)
+                else:
+                    # If the belt is empty, we just loop and check the stop_event again
+                    print(f"{self.name}: Belt is empty. Retrying...")
 
             except Exception as e:
-                # This can happen if the main thread shuts down while a consumer
-                # is waiting on a semaphore.
-                if not self.stop_event.is_set():
-                    print(f"{self.name} encountered an error: {e}")
+                print(f"{self.name} encountered an error: {e}")
                 break
         print(f"{self.name} is shutting down.")

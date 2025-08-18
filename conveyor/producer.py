@@ -18,6 +18,7 @@ class Producer(threading.Thread):
         self.belt = belt
         self.stop_event = stop_event
         self.name = f"Producer-{producer_id}"
+        self.items_produced = 0
 
     def run(self):
         while not self.stop_event.is_set():
@@ -28,11 +29,14 @@ class Producer(threading.Thread):
                 # Simulate time taken to produce the item
                 production_time = random.uniform(0.1, 0.5)
                 time.sleep(production_time)
-                print(
-                    f"{self.name}: Produced item {item} in {production_time:.2f}s.")
 
-                # 2. Place the item on the belt
-                self.belt.put_item(item, self.name)
+                # 2. Place the item on the belt with a timeout
+                if self.belt.put(item, timeout=1.0):
+                    print(f"{self.name}: Placed item {item} on the belt.")
+                    self.items_produced += 1
+                else:
+                    # If the belt is full, we just loop and check the stop_event again
+                    print(f"{self.name}: Belt is full. Retrying...")
 
             except Exception as e:
                 print(f"{self.name} encountered an error: {e}")

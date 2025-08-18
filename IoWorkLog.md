@@ -33,11 +33,10 @@ Resources I used to understand the problem
 https://medium.com/tuanhdotnet/methods-to-solve-the-producer-consumer-problem-in-java-54db4f41abca
 https://www.askpython.com/python/producer-consumer-problem
 
-Learnt about Semaphores as one of the solutions as well as variable 
+Learnt about Semaphores as one of the solutions as well as conditional variable 
 patterns used in similar ways. I Also learnt about the BlockingQueue in java to 
 see how languages solve this problem differently.
 
 I then continued to follow the python tutorial
 
-Had Ideas that we are probably looking at an 
-event driven design pattern whislt I started to read through the problem.
+

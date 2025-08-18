@@ -9,52 +9,69 @@ from config import (
 )
 from conveyor import ConveyorBelt, Producer, Consumer
 
-def main():
-    """Sets up and runs the simulation."""
-    print("Starting Conveyor Belt Simulation...")
-    print(
-        f"Configuration: Belt Capacity={BELT_CAPACITY}, Producers={NUM_PRODUCERS}, Consumers={NUM_CONSUMERS}")
-    print("---------------------------------------------------------")
 
-    # The shared resource
-    belt = ConveyorBelt(BELT_CAPACITY)
+def run_simulation(belt_capacity: int, num_producers: int, num_consumers: int, duration: int):
+    """
+    Runs a single conveyor belt simulation with a given configuration.
 
-    # An event to signal all threads to stop gracefully
+    Args:
+        belt_capacity: The maximum number of items the belt can hold.
+        num_producers: The number of producer threads.
+        num_consumers: The number of consumer threads.
+        duration: The number of seconds to run the simulation for.
+
+    Returns:
+        A dictionary containing the total items produced and consumed.
+    """
+    belt = ConveyorBelt(belt_capacity)
     stop_event = threading.Event()
 
-    threads = []
-    # Create and start producer threads
-    for i in range(NUM_PRODUCERS):
-        producer = Producer(belt, stop_event, i + 1)
-        threads.append(producer)
-        producer.start()
+    producers = [Producer(belt, stop_event, i) for i in range(num_producers)]
+    consumers = [Consumer(belt, stop_event, i) for i in range(num_consumers)]
 
-    # Create and start consumer threads
-    for i in range(NUM_CONSUMERS):
-        consumer = Consumer(belt, stop_event, i + 1)
-        threads.append(consumer)
-        consumer.start()
+    threads = producers + consumers
 
-    # Let the simulation run for the configured duration
-    time.sleep(SIMULATION_DURATION_SECONDS)
+    for thread in threads:
+        thread.start()
 
-    # Shutdown the simulation gracefully
-    print("---------------------------------------------------------")
-    print("Simulation time elapsed. Shutting down all threads...")
+    time.sleep(duration)
+
     stop_event.set()
 
-    # The semaphores might be blocking, so we need to unblock them
-    # to allow threads to check the stop_event and exit.
-    for _ in range(NUM_PRODUCERS):
-        belt.filled_slots.release()  # Unblock a waiting consumer
-    for _ in range(NUM_CONSUMERS):
-        belt.empty_slots.release()  # Unblock a waiting producer
-
-    # Wait for all threads to complete
     for thread in threads:
         thread.join()
 
+    total_produced = sum(p.items_produced for p in producers)
+    total_consumed = sum(c.items_consumed for c in consumers)
+
+    return {
+        "produced": total_produced,
+        "consumed": total_consumed,
+        "remaining": len(belt),
+    }
+
+
+def main():
+    """Sets up and runs the simulation using settings from config."""
+    print("Starting Conveyor Belt Simulation...")
+    print(
+        f"Configuration: Belt Capacity={BELT_CAPACITY}, "
+        f"Producers={NUM_PRODUCERS}, Consumers={NUM_CONSUMERS}"
+    )
+    print("---------------------------------------------------------")
+
+    results = run_simulation(
+        belt_capacity=BELT_CAPACITY,
+        num_producers=NUM_PRODUCERS,
+        num_consumers=NUM_CONSUMERS,
+        duration=SIMULATION_DURATION_SECONDS,
+    )
+
+    print("---------------------------------------------------------")
     print("Simulation finished.")
+    print(f"Total items produced: {results['produced']}")
+    print(f"Total items consumed: {results['consumed']}")
+    print(f"Items remaining on belt: {results['remaining']}")
 
 
 if __name__ == "__main__":

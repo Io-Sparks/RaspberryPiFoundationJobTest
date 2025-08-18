@@ -210,6 +210,10 @@ under this commit: bb28f45f10e13b28be987e9f894f66808d218ec3
 * Io worked with Gemini to bring in unit testing in to the project 
 commit: f979c8ac315de3466a09bc42e2dccf4f265f00e8
 
+* Io started working through demonstrating how different 
+configurations would affect the metrics.
+
+* Io went to bed
 
 
 

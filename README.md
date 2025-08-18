@@ -7,6 +7,7 @@ This project simulates a factory conveyor belt system with multiple producer and
 - `conveyor/`: The core Python package containing the logic for the belt, producers, and consumers.
 - `tests/`: Contains unit and integration tests for the project.
 - `conveyor_simulation.py`: The main script to run the simulation.
+- `run_experiments.py`: A script to run a battery of performance tests with different configurations.
 - `config.py`: Handles configuration management via environment variables.
 - `docs/`: Contains project documentation for architectural decisions and assumptions.
 
@@ -55,3 +56,13 @@ python -m unittest discover tests
 ```
 
 This will find and run all files named `test_*.py` inside the `tests/` directory.
+
+### Running Performance Experiments
+
+To analyze the performance characteristics of the system under different configurations, you can run the experiment script:
+
+```bash
+python run_experiments.py
+```
+
+This script will run a series of simulations with varying belt capacities, producer counts, and consumer counts. It will print a summary table of the results, allowing you to observe how each parameter affects the overall throughput of the system. You can modify the parameter ranges at the top of the `run_experiments.py` file to conduct different tests.

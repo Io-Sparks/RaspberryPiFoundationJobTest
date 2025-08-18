@@ -169,6 +169,29 @@ when you are. Please, lead the way.
 
 * Io resumed
 
+```
+I would like the configuration 
+variables to be extracted 
+from the  @conveyor_simulation.py  
+file into their own .env 
+file or to be used as 
+environement variables as part 
+of the container environment 
+which I think would be more 
+appropirate for automated 
+setup of environments as 
+part of CI/CD.  
+```
+
+* Io works through the agent 
+prompts and hand coding himself 
+to get to a point where 
+this commit was made: <commit hash>.
+This commit moves the configuration 
+into the environment so that it can be tested
+and deployed in a mor automated way. 
+
+
 
 
 

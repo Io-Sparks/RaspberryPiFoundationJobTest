@@ -1,0 +1,12 @@
+replicaCount: 1
+
+image:
+  repository: conveyor-simulation
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+env:
+  BELT_LENGTH: "10"
+  PRODUCER_RATE: "1"
+  CONSUMER_RATE: "1"
+  SIMULATION_DURATION: "20"

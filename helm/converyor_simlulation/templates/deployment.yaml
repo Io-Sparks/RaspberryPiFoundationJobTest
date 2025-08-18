@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-conveyor-simulation
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: conveyor-simulation
+  template:
+    metadata:
+      labels:
+        app: conveyor-simulation
+    spec:
+      containers:
+        - name: conveyor-simulation
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: BELT_LENGTH
+              value: {{ .Values.env.BELT_LENGTH | quote }}
+            - name: PRODUCER_RATE
+              value: {{ .Values.env.PRODUCER_RATE | quote }}
+            - name: CONSUMER_RATE
+              value: {{ .Values.env.CONSUMER_RATE | quote }}
+            - name: SIMULATION_DURATION
+              value: {{ .Values.env.SIMULATION_DURATION | quote }}

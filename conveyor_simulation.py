@@ -4,12 +4,12 @@ import random
 from collections import deque
 import itertools
 
-# --- Configuration ---
-BELT_CAPACITY = 10
-NUM_PRODUCERS = 2
-NUM_CONSUMERS = 3
-SIMULATION_DURATION_SECONDS = 15
-# ---------------------
+from config import (
+    BELT_CAPACITY,
+    NUM_PRODUCERS,
+    NUM_CONSUMERS,
+    SIMULATION_DURATION_SECONDS,
+)
 
 # Using a simple counter for unique item serial numbers
 item_serial_counter = itertools.count(1)

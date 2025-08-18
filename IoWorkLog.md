@@ -66,6 +66,89 @@ Said single file is added to the repo and committed on this commit: 9b234d4ec366
 To get the commit hash for the above
 `git log -1` + Copy and Paste
 
+I pause the video 30 mins in at a point before they talk through 
+the code examples they have so that I can compare mine that 
+I have created versus theirs. I want to assess pro's, con's of my 
+initial production ready design. 
+I wanted to use this as a learning exercise 
+as I have been recovering from burn out and my last few roles 
+have been more hands off coding but still technical roles so am excited 
+about coding and having building on the breadth of my understanding.
+
+* Io refers back to the brief
+
+I review the file in my editor whilst I compose a prompt of 
+what I want to change or build in to the approach whilst also referring back 
+to the brief.
+
+```
+In the file you have generated I want to make some changes with you. 
+I would like us to have a conversation as as one lead and 
+senior polyglot engineer to another and I would like you to 
+changes to create or edit files in real time. 
+
+I will work with you as we iterate through each change I would like to see. 
+
+I am going to review your generated file 
+[conveyor_simulation.py](conveyor_simulation.py)
+from top of the file to bottom and ask you to make changes based on 
+what I see. This will likely modularise the code and incorporate other 
+technologies to prototype with to get us to a production 
+ready deployable codebase. 
+
+Please let me know as we go along if you have any questions or if 
+there is anything you are unclear on.
+
+Areas we are going to be looking at are extensibility, scaling, 
+error handling, caching, performance optimisation, testing, 
+documentation, security, monitoring and observability. 
+
+We are going to do this by planning our code, our design, and 
+our documentation with some principals. These are:
+
+* Another team needs to make changes in our codebase and we 
+need to have oversight and an approval gate for these change requests. 
+* We should try to be as permissive as possible in terms of trusting other 
+teams to make changes.
+* All code that is interactable by third parties should be treated as zero 
+trust
+* What we build should have a multi context testing strategy that focuses 
+on unit and integration testing, potentially behat style behavourial 
+tests if the org is ready to have non technical people invested 
+in test cases
+* We will enable our testing strategy, product managers, 
+stakeholders and engineers to have context in to why we have made the 
+decisions we have and how you work with what we build as a product. 
+* We want product managers to feed into our 
+product's management, design and requirements and 
+these should be documented as we go along as a living system 
+requirements document 
+* Requirements should be part of a design approach baking in best practice 
+that is auditable by humans.   
+* We will log all decisions we make in a file as we go along so the 
+interview team can assess my performance  
+* We will log assumptions to a file as we go along so the interview team 
+can understand my thinking and what trade offs I am making 
+* We will have automated tests to demonstrate the following of the brief 
+"
+the effect of changing certain aspects of the simulation. 
+(E.g. the length of the conveyor belt.)
+"
+** These tests may be unit tests or scripts that we can run to assess the 
+performance of the queues, threads, the processors and consumers. 
+** They should run be runnable locally via containers or in containers 
+on different cloud hardware  
+** They report and emit metrics as part of our observability tooling
+so that we can diagnose problems in production and staging and local 
+environments
+* We write our documentation in files that are relative to the code 
+in the style of instructions. Starting at the root of the project by 
+keeping the README.md up to date as as we go through this process.
+
+Please let me know anything you need in addition to the above to 
+work with me to complete this work.       
+```
+
 
 
 

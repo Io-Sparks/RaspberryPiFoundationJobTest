@@ -26,7 +26,10 @@ changing different parts of the configuration would have
 please run with 
 `python simulation.py --belt-length 15 --num-worker-pairs 3 --strategy team`
 
-
+Added Dockerfile to bring consistency between environments.
+Didnt add kubernetes and associated checks that would manage a lot of 
+scalability aspects as it adds a lot of complexity that is 
+unneccesary at this stage 
 
 
 

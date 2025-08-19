@@ -1,23 +1,19 @@
 import subprocess
 import itertools
 import json
+import os
 
 def run_simulation(belt_length, num_worker_pairs, strategy):
     """Runs the simulation with the given parameters and returns the output."""
-    command = [
-        "python",
-        "simulation.py",
-        "--belt-length",
-        str(belt_length),
-        "--num-worker-pairs",
-        str(num_worker_pairs),
-        "--strategy",
-        strategy,
-        "--quiet",
-        "--steps",
-        str(100) # Keep steps constant for comparable results
-    ]
-    result = subprocess.run(command, capture_output=True, text=True)
+    env = os.environ.copy()
+    env["BELT_LENGTH"] = str(belt_length)
+    env["NUM_WORKER_PAIRS"] = str(num_worker_pairs)
+    env["STRATEGY"] = strategy
+    env["QUIET"] = "true"
+    env["STEPS"] = str(100) # Keep steps constant for comparable results
+
+    command = ["python", "simulation.py"]
+    result = subprocess.run(command, capture_output=True, text=True, env=env)
     return result.stdout
 
 def parse_output(output):
@@ -100,8 +96,11 @@ def main():
         strategy = best_config['strategy']
 
         print("\n--- Recommended Configuration (Highest Efficiency) ---")
-        print("To run the simulation with the most efficient configuration, use this command:")
-        print(f"python simulation.py --belt-length {belt_length} --num-worker-pairs {num_worker_pairs} --strategy {strategy}")
+        print("To run the simulation with the most efficient configuration, set these environment variables:")
+        print(f"export BELT_LENGTH={belt_length}")
+        print(f"export NUM_WORKER_PAIRS={num_worker_pairs}")
+        print(f"export STRATEGY={strategy}")
+        print("\nThen run: python simulation.py")
 
 
 if __name__ == "__main__":

@@ -1,77 +1,87 @@
-# RaspberryPiFoundationJobTest
+# Factory Simulation
 
-This project simulates a conveyor belt system with workers assembling products.
+This project simulates a factory floor with conveyor belts and workers who assemble products from components.
 
-## How to Run the Simulation
+## Configuration
 
-To run the simulation, execute the `simulation.py` script from your terminal.
+The simulation is configured using environment variables. For local development, you can create a `.env` file in the project root to manage these settings.
 
-```bash
-python simulation.py [OPTIONS]
+**`.env.example`:**
+```
+# The length of the conveyor belt.
+BELT_LENGTH=15
+
+# The number of pairs of workers.
+NUM_WORKER_PAIRS=3
+
+# The strategy for the workers (individual or team).
+STRATEGY=team
+
+# The number of steps to run the simulation for.
+STEPS=100
+
+# Set to "true" to suppress step-by-step output.
+QUIET=false
 ```
 
-### Options:
+### Environment Variables:
 
-*   `--belt-length <length>`: Specifies the length of the conveyor belts.
-    *   Type: Integer
-    *   Default: `10`
-    *   Example: `--belt-length 15`
+*   `BELT_LENGTH`: The number of slots on the conveyor belt. (Default: `10`)
+*   `NUM_WORKER_PAIRS`: The number of worker pairs. (Default: `3`)
+*   `STRATEGY`: The behavior of the workers. Can be `individual` or `team`. (Default: `individual`)
+*   `STEPS`: The total number of steps the simulation will run. (Default: `100`)
+*   `QUIET`: If set to `true`, the detailed step-by-step log will be hidden. (Default: `false`)
 
-*   `--num-worker-pairs <number>`: Specifies the number of worker pairs.
-    *   Type: Integer
-    *   Default: `3`
-    *   Example: `--num-worker-pairs 2`
+## How to Run
 
-*   `--num-belts <number>`: Specifies the number of conveyor belts.
-    *   Type: Integer
-    *   Default: `1`
-    *   Example: `--num-belts 2`
+### 1. Local Execution
 
-*   `--strategy <strategy_name>`: Specifies the worker strategy to use.
-    *   Options: `individual`, `team`
-    *   Type: String
-    *   Default: `individual`
-    *   Example: `--strategy team`
-
-*   `--steps <number>`: Specifies the number of steps to run the simulation for.
-    *   Type: Integer
-    *   Default: `100`
-    *   Example: `--steps 50`
-
-### Examples:
-
-1.  **Run with default settings:**
-    ```bash
-    python simulation.py
-    ```
-
-2.  **Run with a belt length of 20 and 5 worker pairs:**
-    ```bash
-    python simulation.py --belt-length 20 --num-worker-pairs 5
-    ```
-
-3.  **Run for 200 steps using the 'team' strategy:**
-    ```bash
-    python simulation.py --steps 200 --strategy team
-    ```
-
-4.  **Run with 2 belts and a belt length of 15:**
-    ```bash
-    python simulation.py --num-belts 2 --belt-length 15
-    ```
-
-## Running the Unit Tests
-
-To run the unit tests, use the following command from the root directory of the project:
+First, install the required Python packages:
 
 ```bash
-python -m unittest discover tests
+pip install -r requirements.txt
 ```
+
+Create a `.env` file (you can copy `.env.example`) and modify the values as needed. Then, run the simulation:
+
+```bash
+python simulation.py
+```
+
+### 2. Docker
+
+The project includes a `Dockerfile` for building a containerized version of the simulation.
+
+**Build the image:**
+```bash
+docker build -t factory-simulation .
+```
+
+**Run the container with default settings:**
+```bash
+docker run factory-simulation
+```
+
+**Override configuration at runtime:**
+You can override the default environment variables set in the Dockerfile.
+```bash
+docker run -e STRATEGY=individual -e BELT_LENGTH=20 factory-simulation
+```
+
+## Reporting
+
+To analyze the performance of different configurations, run the `reporting.py` script:
+
+```bash
+python reporting.py
+```
+
+This will test various combinations of settings and print a summary report, including a recommendation for the most efficient configuration found.
 
 ## Recommended Configuration
 
-Based on performance testing, the configuration that provides the best balance of velocity, efficiency, and low waste is:
+Based on the latest performance analysis, the recommended configuration is:
 
-```bash
-python simulation.py --belt-length 15 --num-worker-pairs 3 --strategy team
-```
+*   **BELT_LENGTH**: `15`
+*   **NUM_WORKER_PAIRS**: `3`
+*   **STRATEGY**: `team`

@@ -1,6 +1,7 @@
-import argparse
 import json
 import random
+import os
+from dotenv import load_dotenv
 from belt import ConveyorBelt
 from worker import Worker
 from strategies import IndividualStrategy, TeamStrategy
@@ -91,22 +92,23 @@ class Simulation:
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run a conveyor belt simulation.")
-    parser.add_argument("--belt-length", type=int, default=10, help="Length of the conveyor belts.")
-    parser.add_argument("--num-worker-pairs", type=int, default=3, help="Number of worker pairs.")
-    parser.add_argument("--num-belts", type=int, default=1, help="Number of conveyor belts.")
-    parser.add_argument("--strategy", type=str, default="individual", help="Worker strategy (individual or team).")
-    parser.add_argument("--steps", type=int, default=100, help="Number of steps to run the simulation for.")
-    parser.add_argument("--quiet", action="store_true", help="Suppress step-by-step output.")
-    args = parser.parse_args()
+    load_dotenv()  # Load environment variables from .env file
+
+    # Get configuration from environment variables with defaults
+    belt_length = int(os.getenv("BELT_LENGTH", 10))
+    num_worker_pairs = int(os.getenv("NUM_WORKER_PAIRS", 3))
+    num_belts = int(os.getenv("NUM_BELTS", 1))
+    strategy = os.getenv("STRATEGY", "individual")
+    steps = int(os.getenv("STEPS", 100))
+    quiet = os.getenv("QUIET", "false").lower() in ("true", "1", "t")
 
     try:
         sim = Simulation(
-            num_worker_pairs=args.num_worker_pairs,
-            belt_length=args.belt_length,
-            num_belts=args.num_belts,
-            strategy_name=args.strategy
+            num_worker_pairs=num_worker_pairs,
+            belt_length=belt_length,
+            num_belts=num_belts,
+            strategy_name=strategy
         )
-        sim.run_simulation(args.steps, args.quiet)
+        sim.run_simulation(steps, quiet)
     except ValueError as e:
         print(f"Error: {e}")

@@ -63,3 +63,17 @@ This document records the key architectural and design decisions made during the
 *   **Reasoning:**
     *   **Deadlock Prevention:** The previous implementation caused threads to hang indefinitely if they tried to access a full or empty belt when the simulation was stopping. This created a deadlock where threads could not check the `stop_event`.
     *   **Graceful Shutdown:** Using a short timeout allows threads to wake up periodically, check the `stop_event`, and terminate gracefully, ensuring that tests and the application can shut down reliably. This makes the entire system more robust and predictable.
+
+## 2025-08-21: Observability and Health Checks
+
+**Decision:** Implement Liveness and Readiness Probes.
+
+*   **Decision:**
+    *   Implemented a lightweight HTTP server in a separate thread to provide `/healthz` (liveness) and `/readyz` (readiness) endpoints.
+    *   Updated the Helm chart to use these probes for container health management in Kubernetes.
+
+*   **Reasoning:**
+    *   **Automated Recovery:** Liveness probes allow Kubernetes to automatically detect and restart application instances that have frozen or deadlocked, ensuring service availability without manual intervention.
+    *   **Safe Deployments:** Readiness probes prevent Kubernetes from directing traffic to a new pod until the application has fully initialized (e.g., all producer/consumer threads are running), preventing dropped requests and ensuring zero-downtime updates.
+    *   **Observability:** Provides a standard, machine-readable way for the container orchestrator to understand the internal state of the application, which is a fundamental principle of building cloud-native applications.
+    *   **State-Reflective Probes:** The implementation directly ties the probe status to the application'''s core logic (a "heartbeat" for liveness and a "ready" flag for readiness), ensuring the health checks are a true reflection of the application'''s ability to function.

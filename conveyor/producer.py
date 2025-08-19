@@ -2,6 +2,7 @@ import threading
 import time
 import random
 import itertools
+import logging
 
 from .conveyor_belt import ConveyorBelt
 
@@ -19,6 +20,7 @@ class Producer(threading.Thread):
         self.stop_event = stop_event
         self.name = f"Producer-{producer_id}"
         self.items_produced = 0
+        self.log = logging.getLogger(self.name)
 
     def run(self):
         while not self.stop_event.is_set():
@@ -32,13 +34,13 @@ class Producer(threading.Thread):
 
                 # 2. Place the item on the belt with a timeout
                 if self.belt.put(item, timeout=1.0):
-                    print(f"{self.name}: Placed item {item} on the belt.")
+                    self.log.info(f"Placed item {item} on the belt.")
                     self.items_produced += 1
                 else:
-                    # If the belt is full, we just loop and check the stop_event again
-                    print(f"{self.name}: Belt is full. Retrying...")
+                    # If the belt is full, we log a warning and check the stop_event again
+                    self.log.warning("Belt is full. Retrying...")
 
             except Exception as e:
-                print(f"{self.name} encountered an error: {e}")
+                self.log.error(f"Encountered an unhandled error: {e}", exc_info=True)
                 break
-        print(f"{self.name} is shutting down.")
+        self.log.info("Shutting down.")

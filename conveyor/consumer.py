@@ -1,6 +1,7 @@
 import threading
 import time
 import random
+import logging
 
 from .conveyor_belt import ConveyorBelt
 
@@ -15,6 +16,7 @@ class Consumer(threading.Thread):
         self.stop_event = stop_event
         self.name = f"Consumer-{consumer_id}"
         self.items_consumed = 0
+        self.log = logging.getLogger(self.name)
 
     def run(self):
         while not self.stop_event.is_set():
@@ -25,13 +27,13 @@ class Consumer(threading.Thread):
                     self.items_consumed += 1
                     # 2. "Consume" the item
                     consumption_time = random.uniform(0.2, 0.8)
-                    print(f"{self.name}: Consumed item {item}.")
+                    self.log.info(f"Consumed item {item}.")
                     time.sleep(consumption_time)
                 else:
-                    # If the belt is empty, we just loop and check the stop_event again
-                    print(f"{self.name}: Belt is empty. Retrying...")
+                    # If the belt is empty, we log it and check the stop_event again
+                    self.log.info("Belt is empty. Retrying...")
 
             except Exception as e:
-                print(f"{self.name} encountered an error: {e}")
+                self.log.error(f"Encountered an unhandled error: {e}", exc_info=True)
                 break
-        print(f"{self.name} is shutting down.")
+        self.log.info("Shutting down.")

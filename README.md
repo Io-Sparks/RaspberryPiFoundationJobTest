@@ -16,6 +16,7 @@ This project simulates a factory conveyor belt system with multiple producer and
 ### Prerequisites
 
 - Python 3.7+
+- Docker (for containerized deployment)
 
 ### Setup
 
@@ -47,9 +48,42 @@ python conveyor_simulation.py
 
 The script will load the configuration from your `.env` file and start the simulation, printing live updates to the console.
 
+### Running with Docker
+
+To build and run the application as a Docker container:
+
+1.  **Build the image:**
+    ```bash
+    docker build -t conveyor-simulation .
+    ```
+
+2.  **Run the container:**
+    ```bash
+    docker run --rm -p 8080:8080 --name=simulation conveyor-simulation
+    ```
+
+### Health Checks
+
+The application includes a built-in health check server running on port `8080`, which is essential for running in a containerized environment like Kubernetes.
+
+-   **Liveness Probe:** `http://localhost:8080/healthz`
+    -   Returns `200 OK` if the main application loop is running correctly.
+-   **Readiness Probe:** `http://localhost:8080/readyz`
+    -   Returns `200 OK` once the simulation has fully initialized and the producer/consumer threads are active.
+
+You can test these endpoints with `curl` while the Docker container is running:
+
+```bash
+# Check if the application is ready
+curl http://localhost:8080/readyz
+
+# Check if the application is still alive
+curl http://localhost:8080/healthz
+```
+
 ### Running the Tests
 
-The project includes a suite of unit and integration tests to ensure correctness and thread-safety. To run all tests, use Python's built-in `unittest` discover feature:
+The project includes a suite of unit and integration tests to ensure correctness and thread-safety. To run all tests, use Python'''s built-in `unittest` discover feature:
 
 ```bash
 python -m unittest discover tests

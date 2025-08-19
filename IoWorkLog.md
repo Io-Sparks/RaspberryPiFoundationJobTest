@@ -215,6 +215,14 @@ configurations would affect the metrics.
 
 * Io went to bed
 
+19/08/2025
+
+Added logging as part of observability, added health checks to ensure 
+pods run correctly and added dockerfile to build the image to use 
+
+
+
+
 
 
 

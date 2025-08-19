@@ -6,6 +6,7 @@ class, which manages the state and movement of items in the simulation.
 """
 
 import random
+from typing import List, Optional
 
 # --- Components ---
 A = "A"  # Component A
@@ -15,19 +16,19 @@ C = "C"  # Finished product
 class ConveyorBelt:
     """Represents the conveyor belt that transports components."""
 
-    def __init__(self, length):
+    def __init__(self, length: int) -> None:
         """
         Initializes the ConveyorBelt.
 
         Args:
             length (int): The number of slots on the conveyor belt.
         """
-        self.length = length  # The total number of slots on the belt
-        self.slots = [None] * length  # The list of slots, initially empty
-        self.missed_a = 0  # Counter for 'A' components that fall off
-        self.missed_b = 0  # Counter for 'B' components that fall off
+        self.length: int = length  # The total number of slots on the belt
+        self.slots: List[Optional[str]] = [None] * length  # The list of slots, initially empty
+        self.missed_a: int = 0  # Counter for 'A' components that fall off
+        self.missed_b: int = 0  # Counter for 'B' components that fall off
 
-    def step(self):
+    def step(self) -> Optional[str]:
         """
         Moves all items on the belt forward by one position.
 
@@ -53,7 +54,7 @@ class ConveyorBelt:
 
         return last_item
 
-    def step_with_random_item(self):
+    def step_with_random_item(self) -> Optional[str]:
         """
         Moves the belt forward one step and adds a new random component (or nothing)
         to the first slot.
@@ -78,7 +79,7 @@ class ConveyorBelt:
 
         return last_item
 
-    def push_item(self, item):
+    def push_item(self, item: str) -> None:
         """
         Places a given item onto the first slot of the belt.
 
@@ -89,7 +90,7 @@ class ConveyorBelt:
         """
         self.slots[0] = item
 
-    def is_empty(self):
+    def is_empty(self) -> bool:
         """
         Checks if the conveyor belt is completely empty.
 
@@ -98,7 +99,7 @@ class ConveyorBelt:
         """
         return all(slot is None for slot in self.slots)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         """
         Provides a string representation of the belt's current state.
 

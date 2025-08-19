@@ -51,3 +51,7 @@ This document records the major bugs and the design decisions made to fix them. 
 13. **Intelligent Reporting Refinements**:
     *   **Problem**: The report was promoting configurations that produced zero products but had low waste, which is not useful.
     *   **Decision**: The sorting logic in `reporting.py` was significantly improved. It now **separates non-productive configurations** and moves them to the bottom of the report, ensuring the focus is always on viable and efficient strategies.
+
+14. **Implementation of Core Assembly Time Requirement**:
+    *   **Problem**: A key requirement was missed: the assembly process was instantaneous. The rules state that assembly should take 4 simulation steps, during which the worker is busy.
+    *   **Decision**: Implemented the 4-tick assembly delay. The `Worker` class was updated with an `assembly_timer`. All strategies (`individual`, `team`, `hivemind`) were modified to start this timer instead of creating a product instantly. The main `simulation.py` loop was updated to decrement the timer for all workers at each step. This makes the simulation significantly more realistic and accurate.

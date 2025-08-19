@@ -4,13 +4,14 @@ This document outlines the key assumptions and design constraints that have been
 
 ## Simulation Logic
 
-1.  **Workers Act Before Source**: In a single simulation step, all workers complete their actions *before* a new component is generated at the source. This is critical for allowing workers to place finished products onto the belt.
-2.  **Slot 0 is the Source**: The first slot (index 0) of any conveyor belt is exclusively for generating new components. Workers **must not** place any items in this slot.
-3.  **Worker Stations Start at Slot 1**: To enforce the "Slot 0 is the Source" rule, worker stations are assigned starting from slot 1.
-4.  **Workers Only Pick Up Raw Materials**: Workers should only pick up components 'A' and 'B'. They must never pick up a finished product ('C').
-5.  **Assembly Requires 'A' and 'B'**: A finished product 'C' can only be created by assembling one 'A' and one 'B' component.
-6.  **One Action Per Step**: A worker can only perform one significant action per simulation step (e.g., pickup, place, or advance assembly).
-7.  **Flexible Product Placement**: A worker holding a finished product can place it in **any available empty slot** on the conveyor belt. This is a critical rule to prevent deadlocks in high-density configurations.
+1.  **Assembly Takes Time**: The assembly process is not instantaneous. Once a worker has collected both an 'A' and a 'B' component, they enter an "assembling" state for **4 simulation steps**. During this period, the worker is considered "busy" and cannot perform any other actions (e.g., picking up or placing items).
+2.  **Workers Act Before Source**: In a single simulation step, all workers complete their actions *before* a new component is generated at the source. This is critical for allowing workers to place finished products onto the belt.
+3.  **Slot 0 is the Source**: The first slot (index 0) of any conveyor belt is exclusively for generating new components. Workers **must not** place any items in this slot.
+4.  **Worker Stations Start at Slot 1**: To enforce the "Slot 0 is the Source" rule, worker stations are assigned starting from slot 1.
+5.  **Workers Only Pick Up Raw Materials**: Workers should only pick up components 'A' and 'B'. They must never pick up a finished product ('C').
+6.  **Assembly Requires 'A' and 'B'**: A finished product 'C' can only be created by assembling one 'A' and one 'B' component.
+7.  **One Action Per Step**: A worker can only perform one significant action per simulation step (e.g., pickup, place, or start assembly). The progression of the assembly timer itself does not count as an action.
+8.  **Flexible Product Placement**: A worker holding a finished product can place it in **any available empty slot** on the conveyor belt. This is a critical rule to prevent deadlocks in high-density configurations.
 
 ## Code and Design
 

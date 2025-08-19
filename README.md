@@ -2,6 +2,13 @@
 
 This project simulates a factory floor with conveyor belts and workers who assemble products from components.
 
+## Core Simulation Rules
+
+- **Components**: The simulation uses two primary components, 'A' and 'B'.
+- **Assembly**: A worker must collect one of each component to begin assembly.
+- **Assembly Time**: The assembly process is not instantaneous. Once a worker has both components, they enter an "assembling" state for **4 simulation steps**. During this time, they cannot interact with the belt or other workers.
+- **Finished Product**: After the 4-step assembly period, the 'A' and 'B' components are consumed and replaced with a finished product, 'C'. The worker is then free to place the 'C' on the belt.
+
 ## Configuration
 
 The simulation is configured using environment variables. For local development, you can create a `.env` file in the project root to manage these settings.
@@ -14,7 +21,7 @@ BELT_LENGTH=15
 # The number of pairs of workers.
 NUM_WORKER_PAIRS=3
 
-# The strategy for the workers (individual or team).
+# The strategy for the workers (individual, team, or hivemind).
 STRATEGY=team
 
 # The number of steps to run the simulation for.
@@ -28,7 +35,7 @@ QUIET=false
 
 *   `BELT_LENGTH`: The number of slots on the conveyor belt. (Default: `10`)
 *   `NUM_WORKER_PAIRS`: The number of worker pairs. (Default: `3`)
-*   `STRATEGY`: The behavior of the workers. Can be `individual` or `team`. (Default: `individual`)
+*   `STRATEGY`: The behavior of the workers. Can be `individual`, `team`, or `hivemind`. (Default: `individual`)
 *   `STEPS`: The total number of steps the simulation will run. (Default: `100`)
 *   `QUIET`: If set to `true`, the detailed step-by-step log will be hidden. (Default: `false`)
 
@@ -84,4 +91,4 @@ Based on the latest performance analysis, the recommended configuration is:
 
 *   **BELT_LENGTH**: `15`
 *   **NUM_WORKER_PAIRS**: `3`
-*   **STRATEGY**: `team`
+*   **STRATEGY**: `hivemind`

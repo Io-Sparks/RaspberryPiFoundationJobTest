@@ -4,6 +4,7 @@ import random
 import logging
 
 from .conveyor_belt import ConveyorBelt
+from .exceptions import ConsumerError
 
 class Consumer(threading.Thread):
     """
@@ -39,5 +40,6 @@ class Consumer(threading.Thread):
 
             except Exception as e:
                 self.log.error(f"Encountered an unhandled error: {e}", exc_info=True)
-                break
+                # Wrap the original exception and re-raise it as a custom exception
+                raise ConsumerError(f"Consumer {self.name} failed unexpectedly.") from e
         self.log.info("Shutting down.")

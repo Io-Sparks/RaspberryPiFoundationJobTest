@@ -5,6 +5,7 @@ import itertools
 import logging
 
 from .conveyor_belt import ConveyorBelt
+from .exceptions import ProducerError
 
 # Using a simple counter for unique item serial numbers
 item_serial_counter = itertools.count(1)
@@ -46,5 +47,6 @@ class Producer(threading.Thread):
 
             except Exception as e:
                 self.log.error(f"Encountered an unhandled error: {e}", exc_info=True)
-                break
+                # Wrap the original exception and re-raise it as a custom exception
+                raise ProducerError(f"Producer {self.name} failed unexpectedly.") from e
         self.log.info("Shutting down.")

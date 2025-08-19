@@ -21,3 +21,12 @@ Added in core components of the simulation
 
 Added unit testing 
 
+Added optimisations and experiments to see what effects
+changing different parts of the configuration would have
+please run with 
+`python simulation.py --belt-length 15 --num-worker-pairs 3 --strategy team`
+
+
+
+
+

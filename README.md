@@ -67,3 +67,11 @@ To run the unit tests, use the following command from the root directory of the 
 ```bash
 python -m unittest discover tests
 ```
+
+## Recommended Configuration
+
+Based on performance testing, the configuration that provides the best balance of velocity, efficiency, and low waste is:
+
+```bash
+python simulation.py --belt-length 15 --num-worker-pairs 3 --strategy team
+```

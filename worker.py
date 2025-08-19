@@ -1,3 +1,4 @@
+
 from __future__ import annotations
 from typing import TYPE_CHECKING, List
 
@@ -24,6 +25,28 @@ class Worker:
         """Delegates the action choice entirely to the strategy."""
         self.strategy.act(self, partner, belts, station_index)
 
+    def needs_component(self, component: str) -> bool:
+        """
+        Checks if the worker needs a specific component to start or continue assembly.
+        A worker needs a component if they have an empty hand, or if they have
+        one component and the specified one is the missing counterpart.
+        """
+        if self.is_full() or self.is_assembling():
+            return False
+
+        # If both hands are empty, they need either A or B.
+        if self.hand_left is None and self.hand_right is None:
+            return component in [A, B]
+
+        # If one hand is empty, they need the other component.
+        held_component = self.hand_left or self.hand_right
+        if held_component == A and component == B:
+            return True
+        if held_component == B and component == A:
+            return True
+            
+        return False
+
     def needs(self) -> List[str]:
         """Returns a list of components the worker needs to start assembly."""
         if self.is_full() or self.is_assembling():
@@ -40,7 +63,7 @@ class Worker:
 
     def can_assemble(self) -> bool:
         """Checks if the worker has both components and is not already assembling."""
-        return self.is_full() and not self.is_assembling()
+        return {self.hand_left, self.hand_right} == {A, B} and not self.is_assembling()
 
     def start_assembly(self):
         """Begins the assembly process."""

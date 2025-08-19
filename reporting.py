@@ -10,7 +10,7 @@ def run_simulation(belt_length, num_worker_pairs, strategy):
     env["NUM_WORKER_PAIRS"] = str(num_worker_pairs)
     env["STRATEGY"] = strategy
     env["QUIET"] = "true"
-    env["STEPS"] = str(100) # Keep steps constant for comparable results
+    env["STEPS"] = str(1000) # Keep steps constant for comparable results
 
     command = ["python", "simulation.py"]
     result = subprocess.run(command, capture_output=True, text=True, env=env)
@@ -33,24 +33,25 @@ def main():
     """
     Runs the simulation with various configurations and generates a report.
     """
-    # Sensible ranges for the parameters
-    belt_lengths = [1, 5, 10, 15]
-    num_worker_pairs_options = [1, 2, 3] # Worker pairs (2, 4, 6 workers)
+    # Define the strategies and simulation steps
     strategies = ["individual", "team"]
-    simulation_steps = 100 # Keep this constant for comparable results
+    simulation_steps = 1000 # Keep this constant for comparable results
 
     results = []
 
-    print("Running simulations...")
+    print("Generating simulation configurations...")
 
-    # Generate all combinations of parameters
-    param_combinations = list(itertools.product(belt_lengths, num_worker_pairs_options, strategies))
+    # Generate a dynamic list of parameter combinations
+    param_combinations = []
+    for belt_length in range(1, 21): # Belt lengths from 1 to 20
+        # Number of worker pairs can be at most the belt length
+        for num_worker_pairs in range(1, belt_length + 1):
+            for strategy in strategies:
+                param_combinations.append((belt_length, num_worker_pairs, strategy))
+
+    print(f"Running {len(param_combinations)} simulations...")
 
     for i, (belt_length, num_worker_pairs, strategy) in enumerate(param_combinations):
-        # Skip impossible configurations where workers wouldn't fit
-        if num_worker_pairs > belt_length -1:
-            continue
-
         print(f"Running configuration {i+1}/{len(param_combinations)}: "
               f"Belt Length={belt_length}, Workers={num_worker_pairs*2}, Strategy='{strategy}'")
 
@@ -61,7 +62,9 @@ def main():
         num_workers = num_worker_pairs * 2
         efficiency = velocity / num_workers if num_workers > 0 else 0
         total_missed = missed_a + missed_b
-        waste_percentage = (total_missed / simulation_steps) * 100 if simulation_steps > 0 else 0
+        # Calculate total components that entered the belt. It's one per step.
+        total_components = simulation_steps
+        waste_percentage = (total_missed / total_components) * 100 if total_components > 0 else 0
 
         results.append({
             "belt_length": belt_length,
@@ -74,8 +77,10 @@ def main():
             "waste_percentage": waste_percentage,
         })
 
-    # Sort results by efficiency for the report
-    results.sort(key=lambda x: x["efficiency"], reverse=True)
+    # Sort results:
+    # 1. Push all runs with 0 velocity to the bottom.
+    # 2. Sort the productive runs by waste (asc) and then by efficiency (desc).
+    results.sort(key=lambda x: (1 if x['velocity'] == 0 else 0, x['waste_percentage'], -x['efficiency']))
 
     # Print the report
     print("\n--- Simulation Report ---")
@@ -87,16 +92,18 @@ def main():
         waste_str = f"{res['waste_percentage']:.1f}%"
         print(f"{res['belt_length']:<15} {res['num_workers']:<15} {res['strategy']:<15} {res['velocity']:<25} {res['efficiency']:<30.4f} {res['missed_a']:<10} {res['missed_b']:<10} {waste_str:<10}")
 
-    # Find and print the command for the most efficient configuration
-    if results:
-        # Find best config based on efficiency, then velocity as a tie-breaker
-        best_config = sorted(results, key=lambda x: (x['efficiency'], x['velocity']), reverse=True)[0]
+    # Find and print the command for the best configuration
+    # The list is already sorted according to our criteria. The best is the first one,
+    # provided it actually produced something.
+    best_config = next((r for r in results if r['velocity'] > 0), None)
+
+    if best_config:
         belt_length = best_config['belt_length']
         num_worker_pairs = best_config['num_workers'] // 2
         strategy = best_config['strategy']
 
-        print("\n--- Recommended Configuration (Highest Efficiency) ---")
-        print("To run the simulation with the most efficient configuration, set these environment variables:")
+        print("\n--- Recommended Configuration (Lowest Waste, Highest Efficiency) ---")
+        print("To run the simulation with the least wasteful and most efficient configuration, set these environment variables:")
         print(f"export BELT_LENGTH={belt_length}")
         print(f"export NUM_WORKER_PAIRS={num_worker_pairs}")
         print(f"export STRATEGY={strategy}")

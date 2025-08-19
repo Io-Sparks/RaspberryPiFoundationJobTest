@@ -14,14 +14,15 @@ class IndividualStrategy(WorkerStrategy):
     """A simple strategy where workers act independently."""
     def act(self, worker: Worker, partner: Worker, belts: List[ConveyorBelt], station_index: int):
 
-        # Priority 1: Place a finished product on an empty slot.
+        # Priority 1: Place a finished product on any empty slot.
         if worker.is_holding_product():
             for i, belt in enumerate(belts):
-                if belt.slots[station_index] is None:
-                    product = worker.place_product()
-                    belt.slots[station_index] = product
-                    print(f"{worker.worker_id} placed {product} on belt {i} slot {station_index}. Total finished: {worker.products_made + partner.products_made}")
-                    return
+                for slot_idx, slot in enumerate(belt.slots):
+                    if slot is None:
+                        product = worker.place_product()
+                        belt.slots[slot_idx] = product
+                        print(f"{worker.worker_id} placed {product} on belt {i} slot {slot_idx}. Total finished: {worker.products_made + partner.products_made}")
+                        return
 
         # Priority 2: Continue assembling if already started.
         if worker.is_assembling():
@@ -40,7 +41,7 @@ class IndividualStrategy(WorkerStrategy):
             print(f"{worker.worker_id} started assembling.")
             return
 
-        # Priority 4: Pick up needed components from any belt.
+        # Priority 4: Pick up needed components from the worker's station.
         if not worker.is_full():
             needed_components = worker.needs()
             for component in needed_components:
@@ -58,11 +59,12 @@ class TeamStrategy(WorkerStrategy):
     def _get_best_action(self, worker: Worker, partner: Worker, belts: List[ConveyorBelt], station_index: int) -> Tuple[str, Any] | None:
         possible_actions = []
 
-        # 1. Score placing a finished product (highest priority)
+        # 1. Score placing a finished product in ANY empty slot (highest priority)
         if worker.is_holding_product():
             for i, belt in enumerate(belts):
-                if belt.slots[station_index] is None:
-                    possible_actions.append((100, ('place_product', (i, belt))))
+                for slot_idx, slot in enumerate(belt.slots):
+                    if slot is None:
+                        possible_actions.append((100, ('place_product', (i, belt, slot_idx))))
 
         # 2. Score continuing assembly
         if worker.is_assembling():
@@ -99,7 +101,12 @@ class TeamStrategy(WorkerStrategy):
 
         # Return the action with the highest score
         possible_actions.sort(key=lambda x: x[0], reverse=True)
-        return possible_actions[0][1]
+        # If multiple actions have the same highest score, this will pick one, but it's deterministic.
+        # Could add randomness or secondary criteria if needed.
+        if possible_actions:
+            return possible_actions[0][1]
+        return None
+
 
     def act(self, worker: Worker, partner: Worker, belts: List[ConveyorBelt], station_index: int):
         action_details = self._get_best_action(worker, partner, belts, station_index)
@@ -111,10 +118,10 @@ class TeamStrategy(WorkerStrategy):
         action_type, params = action_details
 
         if action_type == 'place_product':
-            belt_idx, belt = params
+            belt_idx, belt, slot_idx = params
             product = worker.place_product()
-            belt.slots[station_index] = product
-            print(f"{worker.worker_id} (team) placed {product} on belt {belt_idx} slot {station_index}. Total finished: {worker.products_made + partner.products_made}")
+            belt.slots[slot_idx] = product
+            print(f"{worker.worker_id} (team) placed {product} on belt {belt_idx} slot {slot_idx}. Total finished: {worker.products_made + partner.products_made}")
 
         elif action_type == 'step_assembly':
             worker.step_assembly()

@@ -16,6 +16,7 @@ class Simulation:
         self.num_worker_pairs = num_worker_pairs
         self.belt_length = belt_length
         self.num_belts = num_belts
+        self.strategy_name = strategy_name
 
         self.belts = [ConveyorBelt(belt_length) for _ in range(num_belts)]
 
@@ -79,6 +80,17 @@ class Simulation:
             print(f"Total finished products: {total_finished}")
             print(f"Total missed A components: {missed_a}")
             print(f"Total missed B components: {missed_b}")
+            
+            print("\n--- Configuration Used ---")
+            print("To run this configuration again:")
+            print(f"BELT_LENGTH={self.belt_length} NUM_WORKER_PAIRS={self.num_worker_pairs} STRATEGY={self.strategy_name} python simulation.py")
+
+            print("\n--- Recommended Configuration ---")
+            print("export BELT_LENGTH=15")
+            print("export NUM_WORKER_PAIRS=3")
+            print("export STRATEGY=team")
+            print("# Then run: python simulation.py")
+
 
         # Output JSON for reporting
         output_data = {

@@ -6,7 +6,6 @@ from config import (
     BELT_CAPACITY,
     NUM_PRODUCERS,
     NUM_CONSUMERS,
-    SIMULATION_DURATION_SECONDS,
 )
 from conveyor import ConveyorBelt, Producer, Consumer
 from health_checker import HealthState, HealthChecker
@@ -17,10 +16,9 @@ def setup_simulation(belt_capacity: int, num_producers: int, num_consumers: int)
     Sets up the simulation components, starts the threads, and returns them.
     """
     belt = ConveyorBelt(belt_capacity)
-    stop_event = threading.Event()
 
-    producers = [Producer(belt, stop_event, i) for i in range(num_producers)]
-    consumers = [Consumer(belt, stop_event, i) for i in range(num_consumers)]
+    producers = [Producer(belt, i) for i in range(num_producers)]
+    consumers = [Consumer(belt, i) for i in range(num_consumers)]
 
     threads = producers + consumers
     for thread in threads:
@@ -31,7 +29,6 @@ def setup_simulation(belt_capacity: int, num_producers: int, num_consumers: int)
         "producers": producers,
         "consumers": consumers,
         "threads": threads,
-        "stop_event": stop_event,
     }
 
 
@@ -70,30 +67,37 @@ def main():
     logging.info("Application is ready. Readiness probe will now succeed.")
 
     # 4. Main application loop with heartbeat
-    logging.info(f"Simulation will run for {SIMULATION_DURATION_SECONDS} seconds.")
-    end_time = time.time() + SIMULATION_DURATION_SECONDS
-    while time.time() < end_time:
-        health_state.record_heartbeat()
-        # The liveness probe will now succeed for the next 30 seconds.
-        time.sleep(5)  # Send a heartbeat every 5 seconds
+    logging.info("Simulation running indefinitely. Press Ctrl+C to exit.")
 
-    logging.info("Simulation duration reached. Stopping threads...")
+    try:
+        while True:
+            health_state.record_heartbeat()
+            # The liveness probe will now succeed for the next 30 seconds.
+            time.sleep(5)  # Send a heartbeat every 5 seconds
+    except KeyboardInterrupt:
+        logging.info("Shutdown signal received (Ctrl+C).")
+    finally:
+        logging.info("Stopping all threads gracefully...")
 
-    # 5. Stop all threads gracefully
-    sim["stop_event"].set()
-    for thread in sim["threads"]:
-        thread.join()
+        # 5. Stop all threads
+        for thread in sim["producers"] + sim["consumers"]:
+            thread.stop()
 
-    # 6. Collect and log final results
-    total_produced = sum(p.items_produced for p in sim["producers"])
-    total_consumed = sum(c.items_consumed for c in sim["consumers"])
-    items_remaining = len(sim["belt"])
+        for thread in sim["threads"]:
+            thread.join()
 
-    logging.info("---------------------------------------------------------")
-    logging.info("Simulation finished.")
-    logging.info(f"Total items produced: {total_produced}")
-    logging.info(f"Total items consumed: {total_consumed}")
-    logging.info(f"Items remaining on belt: {items_remaining}")
+        logging.info("All threads have been stopped.")
+
+        # 6. Collect and log final results
+        total_produced = sum(p.items_produced for p in sim["producers"])
+        total_consumed = sum(c.items_consumed for c in sim["consumers"])
+        items_remaining = len(sim["belt"])
+
+        logging.info("---------------------------------------------------------")
+        logging.info("Simulation finished.")
+        logging.info(f"Total items produced: {total_produced}")
+        logging.info(f"Total items consumed: {total_consumed}")
+        logging.info(f"Items remaining on belt: {items_remaining}")
 
 
 if __name__ == "__main__":

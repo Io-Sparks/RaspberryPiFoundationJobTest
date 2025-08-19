@@ -220,8 +220,7 @@ configurations would affect the metrics.
 Added logging as part of observability, added health checks to ensure 
 pods run correctly and added dockerfile to build the image to use 
 
-
-
+Added named exceptions 
 
 
 

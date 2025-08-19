@@ -99,4 +99,8 @@ To analyze the performance characteristics of the system under different configu
 python run_experiments.py
 ```
 
-This script will run a series of simulations with varying belt capacities, producer counts, and consumer counts. It will print a summary table of the results, allowing you to observe how each parameter affects the overall throughput of the system. You can modify the parameter ranges at the top of the `run_experiments.py` file to conduct different tests.
+This script runs a comprehensive performance analysis by executing a series of simulations with varying belt capacities, producer counts, and consumer counts. After running the tests, it generates a full analytical report that includes:
+-   **Clear Recommendations:** Identifies the optimal configurations for both maximum throughput and best system efficiency.
+-   **Grouped Results:** Presents detailed metrics grouped by belt capacity, making it easy to compare the impact of different producer/consumer ratios.
+
+This tool is designed to help you find the most effective tuning parameters for your specific workload.

@@ -14,16 +14,20 @@ class Producer(threading.Thread):
     A thread that produces items and puts them on the conveyor belt.
     """
 
-    def __init__(self, belt: ConveyorBelt, stop_event: threading.Event, producer_id: int):
+    def __init__(self, belt: ConveyorBelt, producer_id: int):
         super().__init__()
         self.belt = belt
-        self.stop_event = stop_event
+        self._stop_event = threading.Event()
         self.name = f"Producer-{producer_id}"
         self.items_produced = 0
         self.log = logging.getLogger(self.name)
 
+    def stop(self):
+        """Signals the thread to stop."""
+        self._stop_event.set()
+
     def run(self):
-        while not self.stop_event.is_set():
+        while not self._stop_event.is_set():
             try:
                 # 1. Produce a new item
                 item = next(item_serial_counter)

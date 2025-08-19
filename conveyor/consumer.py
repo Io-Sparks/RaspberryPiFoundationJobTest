@@ -10,16 +10,20 @@ class Consumer(threading.Thread):
     A thread that takes items from the conveyor belt and "consumes" them.
     """
 
-    def __init__(self, belt: ConveyorBelt, stop_event: threading.Event, consumer_id: int):
+    def __init__(self, belt: ConveyorBelt, consumer_id: int):
         super().__init__()
         self.belt = belt
-        self.stop_event = stop_event
+        self._stop_event = threading.Event()
         self.name = f"Consumer-{consumer_id}"
         self.items_consumed = 0
         self.log = logging.getLogger(self.name)
 
+    def stop(self):
+        """Signals the thread to stop."""
+        self._stop_event.set()
+
     def run(self):
-        while not self.stop_event.is_set():
+        while not self._stop_event.is_set():
             try:
                 # 1. Take an item from the belt with a timeout
                 item = self.belt.take(timeout=1.0)

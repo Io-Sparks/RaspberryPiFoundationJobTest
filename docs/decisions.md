@@ -32,7 +32,7 @@ This document records the key architectural and design decisions made during the
     *   **Environment Parity:** Allows local development to mimic the use of environment variables in production without requiring complex setup.
     *   **Safe for Production:** The `load_dotenv()` function fails silently if no `.env` file is found, making it safe to keep in the code for production/CI/CD environments where the file will not and should not exist.
 
-## 2025-08-19: Code Structure and Testing
+## 2025-08-18: Code Structure and Testing
 
 **Decision:** Refactor the core simulation classes (`ConveyorBelt`, `Producer`, `Consumer`) into a dedicated Python package named `conveyor`.
 
@@ -56,7 +56,7 @@ This document records the key architectural and design decisions made during the
     *   **Bounded Buffer:** The `empty_slots` and `filled_slots` semaphores correctly implement the bounded buffer pattern, ensuring producers wait when the belt is full and consumers wait when it is empty. This is a robust and well-understood concurrency pattern.
     *   **Clarity:** While `queue.Queue` provides this out-of-the-box, the explicit use of Locks and Semaphores makes the concurrency control mechanism transparent and easy to understand for developers familiar with threading primitives.
 
-## 2025-08-20: Concurrency Robustness
+## 2025-08-18: Concurrency Robustness
 
 **Decision:** Modified `ConveyorBelt` methods (`put`, `take`) to use non-blocking, timed waits instead of indefinite blocking.
 
@@ -64,7 +64,7 @@ This document records the key architectural and design decisions made during the
     *   **Deadlock Prevention:** The previous implementation caused threads to hang indefinitely if they tried to access a full or empty belt when the simulation was stopping. This created a deadlock where threads could not check the `stop_event`.
     *   **Graceful Shutdown:** Using a short timeout allows threads to wake up periodically, check the `stop_event`, and terminate gracefully, ensuring that tests and the application can shut down reliably. This makes the entire system more robust and predictable.
 
-## 2025-08-21: Observability and Health Checks
+## 2025-08-18: Observability and Health Checks
 
 **Decision:** Implement Liveness and Readiness Probes.
 
@@ -77,3 +77,14 @@ This document records the key architectural and design decisions made during the
     *   **Safe Deployments:** Readiness probes prevent Kubernetes from directing traffic to a new pod until the application has fully initialized (e.g., all producer/consumer threads are running), preventing dropped requests and ensuring zero-downtime updates.
     *   **Observability:** Provides a standard, machine-readable way for the container orchestrator to understand the internal state of the application, which is a fundamental principle of building cloud-native applications.
     *   **State-Reflective Probes:** The implementation directly ties the probe status to the application'''s core logic (a "heartbeat" for liveness and a "ready" flag for readiness), ensuring the health checks are a true reflection of the application'''s ability to function.
+
+## 2025-08-19: Stoppable Workers for Dual-Mode Execution
+
+**Decision:** Refactored the `Producer` and `Consumer` classes to include a `stop()` method and a mechanism to check for a stop event in their main loops.
+
+*   **Reasoning:**
+    *   **Dual-Mode Operation:** This change was critical to support two distinct application execution modes from the same codebase:
+        1.  **Continuous Mode:** For production-like deployments (e.g., via Docker/Kubernetes), the application runs indefinitely until it receives an external termination signal.
+        2.  **Fixed-Duration Mode:** The `run_experiments.py` script requires the ability to start the simulation, run it for a precise duration, and then gracefully stop all threads to collect and analyze performance metrics.
+    *   **Robust Experimentation:** The previous experiment runner was broken because the main simulation no longer accepted a `simulation_time` argument. Making the workers stoppable allows the experiment runner to control the lifecycle externally, providing a more robust and flexible solution.
+    *   **Resource Management:** Ensures that threads can be reliably terminated, preventing orphaned processes and resource leaks, especially in a testing or analytical context.

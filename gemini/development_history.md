@@ -39,3 +39,15 @@ This document records the major bugs and the design decisions made to fix them. 
 10. **Refining Performance Metrics**:
     *   **Need**: The initial "efficiency" metric (products per step) wasn't very insightful.
     *   **Decision**: Changed the efficiency calculation to be **products per worker**. Added **waste tracking** (missed components) to the report. This provides a much more comprehensive view for identifying the truly optimal configuration.
+
+11. **Configuration Refactoring for Portability**:
+    *   **Problem**: The simulation was configured via command-line arguments, which is inflexible for containerized environments.
+    *   **Decision**: Refactored the entire application to use **environment variables** for configuration, with support for `.env` files for local development. This aligns with the Twelve-Factor App methodology and makes the application much more portable and easier to manage in different environments.
+
+12. **The High-Density Deadlock**:
+    *   **Bug**: A critical flaw was discovered where high-density configurations (e.g., 20 workers on a 20-slot belt) produced zero products. Workers could only place finished goods on their single assigned belt slot, which was always occupied.
+    *   **Decision**: Fixed the logic in `strategies.py`. Workers with a finished product can now place it in **any available empty slot** on the belt. This resolved the deadlock and made the simulation results for high-density scenarios accurate.
+
+13. **Intelligent Reporting Refinements**:
+    *   **Problem**: The report was promoting configurations that produced zero products but had low waste, which is not useful.
+    *   **Decision**: The sorting logic in `reporting.py` was significantly improved. It now **separates non-productive configurations** and moves them to the bottom of the report, ensuring the focus is always on viable and efficient strategies.

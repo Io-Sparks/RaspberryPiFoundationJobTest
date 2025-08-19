@@ -89,6 +89,6 @@ This will test various combinations of settings and print a summary report, incl
 
 Based on the latest performance analysis, the recommended configuration is:
 
-*   **BELT_LENGTH**: `15`
-*   **NUM_WORKER_PAIRS**: `3`
+*   **BELT_LENGTH**: `18`
+*   **NUM_WORKER_PAIRS**: `9`
 *   **STRATEGY**: `hivemind`

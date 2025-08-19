@@ -82,7 +82,9 @@ def main() -> None:
 
     param_combinations: List[Tuple[int, int, str]] = []
     for belt_length in range(1, 21):
-        for num_worker_pairs in range(1, belt_length + 1):
+        # Ensure the number of worker pairs does not exceed the belt's capacity.
+        # Each pair needs 2 slots, so the max pairs is belt_length // 2.
+        for num_worker_pairs in range(1, (belt_length // 2) + 1):
             for strategy in strategies:
                 param_combinations.append((belt_length, num_worker_pairs, strategy))
 

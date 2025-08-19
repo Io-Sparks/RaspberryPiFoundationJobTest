@@ -1,6 +1,5 @@
 import unittest
 import time
-import threading
 from conveyor import ConveyorBelt, Producer, Consumer
 
 
@@ -17,13 +16,13 @@ class TestConcurrency(unittest.TestCase):
         simulation_duration = 2  # seconds
 
         belt = ConveyorBelt(capacity=belt_capacity)
-        stop_event = threading.Event()
 
+        # Create producers and consumers using the current constructor
         producers = [
-            Producer(belt, stop_event, i) for i in range(num_producers)
+            Producer(belt, i) for i in range(num_producers)
         ]
         consumers = [
-            Consumer(belt, stop_event, i) for i in range(num_consumers)
+            Consumer(belt, i) for i in range(num_consumers)
         ]
 
         # Start all threads
@@ -35,8 +34,11 @@ class TestConcurrency(unittest.TestCase):
         # Let the simulation run for a while
         time.sleep(simulation_duration)
 
-        # Stop the simulation
-        stop_event.set()
+        # Stop the simulation by calling the stop() method on each thread
+        for p in producers:
+            p.stop()
+        for c in consumers:
+            c.stop()
 
         # Wait for all threads to finish
         for p in producers:

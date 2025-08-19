@@ -1,3 +1,4 @@
+15/08
 Loaded up my IDE - got Gemini to tell me about 
 the brief as I was going to have to learn the problem space.
 
@@ -15,3 +16,6 @@ pulled in the main branch from github
 added this work log and the gitignore
 `git add IoWorkLog.md TASK_1_-_Conveyor_Belt_Challenge__2_.pdf`
 `git commit -m "Initial Commit at project beginning."`
+
+Added in core components of the simulation
+

@@ -19,3 +19,5 @@ added this work log and the gitignore
 
 Added in core components of the simulation
 
+Added unit testing 
+

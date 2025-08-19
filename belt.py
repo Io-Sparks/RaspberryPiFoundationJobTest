@@ -15,7 +15,7 @@ class ConveyorBelt:
 
     def step(self):
         """
-        Moves the belt forward one step and adds a new component.
+        Moves the belt forward one step.
         Returns the item that fell off the end, if any.
         """
         # Item falling off the end
@@ -28,7 +28,16 @@ class ConveyorBelt:
 
         # Move all items one step forward
         self.slots[1:] = self.slots[:-1]
+        self.slots[0] = None
+        
+        return last_item
 
+    def step_with_random_item(self):
+        """
+        Moves the belt forward one step and adds a new component.
+        Returns the item that fell off the end, if any.
+        """
+        last_item = self.step()
         # Add a new item at the start
         rand_val = random.random()
         if rand_val < 1/3:
@@ -39,6 +48,14 @@ class ConveyorBelt:
             self.slots[0] = None
         
         return last_item
+
+    def push_item(self, item):
+        """Pushes an item onto the belt."""
+        self.slots[0] = item
+
+    def is_empty(self):
+        """Returns True if the belt is empty."""
+        return all(slot is None for slot in self.slots)
 
     def __repr__(self):
         return str(self.slots)

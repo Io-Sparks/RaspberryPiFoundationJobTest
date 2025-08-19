@@ -37,7 +37,7 @@ class Simulation:
 
         # 2. After all workers have acted, advance all belts.
         for belt in self.belts:
-            belt.step()
+            belt.step_with_random_item()
 
     def display(self):
         total_finished = self.get_total_finished_products()

@@ -67,6 +67,8 @@ class Worker:
             self.hand_left = item
         elif self.hand_right is None:
             self.hand_right = item
+        else:
+            raise Exception("Both hands are full")
 
     def is_holding_product(self) -> bool:
         """Checks if the worker is holding a finished product."""

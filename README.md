@@ -59,3 +59,11 @@ python simulation.py [OPTIONS]
     ```bash
     python simulation.py --num-belts 2 --belt-length 15
     ```
+
+## Running the Unit Tests
+
+To run the unit tests, use the following command from the root directory of the project:
+
+```bash
+python -m unittest discover tests
+```

@@ -6,8 +6,8 @@ WORKDIR /app
 
 # Set default environment variables for the simulation
 # These can be overridden at runtime (e.g., docker run -e BELT_LENGTH=20 ...)
-ENV BELT_LENGTH=15
-ENV NUM_WORKER_PAIRS=3
+ENV BELT_LENGTH=14
+ENV NUM_WORKER_PAIRS=7
 ENV STRATEGY=team
 ENV STEPS=100
 ENV QUIET=false

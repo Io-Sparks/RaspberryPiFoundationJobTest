@@ -14,7 +14,7 @@ class TestAssemblyProcess(unittest.TestCase):
         """
         Verify that a worker with components 'A' and 'B' starts the assembly timer.
         """
-        worker = Worker("w1", IndividualStrategy())
+        worker = Worker("w1", IndividualStrategy(), assembly_time=4)
         worker.hand_left = A
         worker.hand_right = B
         
@@ -22,7 +22,7 @@ class TestAssemblyProcess(unittest.TestCase):
         worker.act(partner=None, belt=ConveyorBelt(1), station_index=0)
 
         self.assertTrue(worker.is_assembling())
-        self.assertEqual(worker.assembling_time_left, Worker.ASSEMBLY_TIME)
+        self.assertEqual(worker.assembling_time_left, worker.assembly_time)
         self.assertEqual(worker.hand_left, A) # Hands should be unchanged
         self.assertEqual(worker.hand_right, B)
 
@@ -30,7 +30,7 @@ class TestAssemblyProcess(unittest.TestCase):
         """
         Verify that a worker cannot interact with the belt while assembling.
         """
-        worker = Worker("w1", IndividualStrategy())
+        worker = Worker("w1", IndividualStrategy(), assembly_time=4)
         worker.hand_left = A
         worker.hand_right = B
         worker.start_assembly() # Manually start
@@ -51,13 +51,13 @@ class TestAssemblyProcess(unittest.TestCase):
         """
         Verify that the product 'C' appears after the timer is stepped down.
         """
-        worker = Worker("w1", IndividualStrategy())
+        worker = Worker("w1", IndividualStrategy(), assembly_time=4)
         worker.hand_left = A
         worker.hand_right = B
         worker.start_assembly()
 
         # Simulate the passing of time by stepping the assembly process
-        for _ in range(Worker.ASSEMBLY_TIME - 1):
+        for _ in range(worker.assembly_time - 1):
             worker.step_assembly()
         
         self.assertTrue(worker.is_assembling())
@@ -86,7 +86,8 @@ class TestSimulationConstraints(unittest.TestCase):
             Simulation(
                 num_worker_pairs=11, 
                 belt_length=10,
-                strategy_name="individual"
+                strategy_name="individual",
+                assembly_time=4
             )
 
     def test_allows_valid_number_of_workers(self):
@@ -98,7 +99,8 @@ class TestSimulationConstraints(unittest.TestCase):
             Simulation(
                 num_worker_pairs=10,
                 belt_length=10,
-                strategy_name="individual"
+                strategy_name="individual",
+                assembly_time=4
             )
         except ValueError:
             self.fail("Simulation raised ValueError unexpectedly for a valid configuration.")

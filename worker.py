@@ -11,11 +11,10 @@ B = "B"
 C = "C"  # Finished Product
 
 class Worker:
-    ASSEMBLY_TIME = 4
-
-    def __init__(self, worker_id: str, strategy: WorkerStrategy):
+    def __init__(self, worker_id: str, strategy: WorkerStrategy, assembly_time: int = 4):
         self.worker_id = worker_id
         self.strategy = strategy
+        self.assembly_time = assembly_time
         self.hand_left = None
         self.hand_right = None
         self.assembling_time_left = 0
@@ -80,7 +79,7 @@ class Worker:
     def start_assembly(self):
         """Begins the assembly process."""
         if self.can_assemble():
-            self.assembling_time_left = self.ASSEMBLY_TIME
+            self.assembling_time_left = self.assembly_time
 
     def is_assembling(self) -> bool:
         """Checks if the worker is currently assembling a product."""

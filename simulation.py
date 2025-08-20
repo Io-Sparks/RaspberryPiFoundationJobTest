@@ -12,7 +12,7 @@ from views import format_belt_and_workers, format_simulation_results
 
 
 class Simulation:
-    def __init__(self, num_worker_pairs, belt_length, strategy_name):
+    def __init__(self, num_worker_pairs, belt_length, strategy_name, assembly_time):
         # A station holds a pair of workers, so the number of workers cannot exceed the belt length.
         if num_worker_pairs > belt_length:
             raise ValueError("Number of workers cannot exceed the belt length.")
@@ -20,6 +20,7 @@ class Simulation:
         self.num_worker_pairs = num_worker_pairs
         self.belt_length = belt_length
         self.strategy_name = strategy_name
+        self.assembly_time = assembly_time
         self.quiet_mode = os.environ.get("QUIET") == "true"
 
         self.belt = ConveyorBelt(belt_length)
@@ -33,7 +34,7 @@ class Simulation:
 
         self.workers = []
         for i in range(num_worker_pairs * 2):
-            self.workers.append(Worker(i, self.strategy))
+            self.workers.append(Worker(i, self.strategy, self.assembly_time))
 
     def run(self, steps):
         for step in range(steps):
@@ -113,6 +114,7 @@ if __name__ == "__main__":
     parser.add_argument("--num-pairs", type=int, default=3, help="Number of worker pairs.")
     parser.add_argument("--strategy", type=str, default='team', choices=['individual', 'team'], help="Strategy for the workers.")
     parser.add_argument("--steps", type=int, default=100, help="Number of steps to run the simulation for.")
+    parser.add_argument("--assembly-time", type=int, default=4, help="Number of steps required for a worker to assemble a product.")
     parser.add_argument("--log-level", type=str, default='INFO', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], help="Set the logging level.")
     args = parser.parse_args()
 
@@ -122,9 +124,10 @@ if __name__ == "__main__":
     num_pairs = int(os.environ.get('NUM_WORKER_PAIRS', args.num_pairs))
     strategy = os.environ.get('STRATEGY', args.strategy)
     steps = int(os.environ.get('STEPS', args.steps))
+    assembly_time = int(os.environ.get('ASSEMBLY_TIME', args.assembly_time))
 
     try:
-        simulation = Simulation(num_pairs, belt_length, strategy)
+        simulation = Simulation(num_pairs, belt_length, strategy, assembly_time)
         simulation.run(steps)
     except ValueError as e:
         logging.error(f"Failed to initialize simulation: {e}")

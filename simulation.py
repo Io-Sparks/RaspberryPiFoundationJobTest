@@ -13,8 +13,9 @@ from views import format_belt_and_workers, format_simulation_results
 
 class Simulation:
     def __init__(self, num_worker_pairs, belt_length, strategy_name):
+        # A station holds a pair of workers, so the number of workers cannot exceed the belt length.
         if num_worker_pairs > belt_length:
-            raise ValueError("Number of worker pairs cannot exceed the belt length.")
+            raise ValueError("Number of workers cannot exceed the belt length.")
 
         self.num_worker_pairs = num_worker_pairs
         self.belt_length = belt_length

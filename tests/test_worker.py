@@ -77,14 +77,15 @@ class TestSimulationConstraints(unittest.TestCase):
     Tests the physical constraints of the simulation setup.
     """
 
-    def test_raises_error_for_too_many_worker_pairs(self):
+    def test_raises_error_for_too_many_workers(self):
         """
-        Verify that the Simulation raises a ValueError if there are more worker pairs than belt spaces.
+        Verify that the Simulation raises a ValueError if there are more workers than belt spaces.
         """
         with self.assertRaises(ValueError):
+            # 11 pairs of workers for a belt of length 10 should fail
             Simulation(
-                num_worker_pairs=11, # 11 pairs of workers
-                belt_length=10,      # Only 10 station spaces
+                num_worker_pairs=11, 
+                belt_length=10,
                 strategy_name="individual"
             )
 
@@ -93,9 +94,10 @@ class TestSimulationConstraints(unittest.TestCase):
         Verify that the Simulation initializes successfully with a valid number of workers.
         """
         try:
+            # 10 pairs of workers for a belt of length 10 should succeed
             Simulation(
-                num_worker_pairs=10, # 10 pairs of workers
-                belt_length=10,      # 10 station spaces
+                num_worker_pairs=10,
+                belt_length=10,
                 strategy_name="individual"
             )
         except ValueError:

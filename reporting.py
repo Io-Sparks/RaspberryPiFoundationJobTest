@@ -9,7 +9,11 @@ for the factory simulation.
 import subprocess
 import json
 import os
+import logging
 from typing import List, Tuple, Dict, Any, Optional
+
+# Configure logging for the reporting script
+logging.basicConfig(level=logging.INFO, format='%(message)s')
 
 def run_simulation(belt_length: int, num_worker_pairs: int, strategy: str) -> str:
     """
@@ -67,9 +71,9 @@ def parse_output(output: str) -> Tuple[int, int, int, int, int]:
         held_b: int = data.get("held_b", 0)
         return products, missed_a, missed_b, held_a, held_b
     except (json.JSONDecodeError, IndexError):
-        print("\n--- Error parsing simulation output ---")
-        print(output)
-        print("-----------------------------------------")
+        logging.error("\n--- Error parsing simulation output ---")
+        logging.error(output)
+        logging.error("-----------------------------------------")
         return 0, 0, 0, 0, 0
 
 def main() -> None:
@@ -85,7 +89,7 @@ def main() -> None:
 
     results: List[Dict[str, Any]] = []
 
-    print("Generating simulation configurations...")
+    logging.info("Generating simulation configurations...")
 
     param_combinations: List[Tuple[int, int, str]] = []
     for belt_length in range(1, 21):
@@ -95,11 +99,11 @@ def main() -> None:
             for strategy in strategies:
                 param_combinations.append((belt_length, num_worker_pairs, strategy))
 
-    print(f"Running {len(param_combinations)} simulations...")
+    logging.info(f"Running {len(param_combinations)} simulations...")
 
     for i, (belt_length, num_worker_pairs, strategy) in enumerate(param_combinations):
-        print(f"Running configuration {i+1}/{len(param_combinations)}: "
-              f"Belt Length={belt_length}, Workers={num_worker_pairs*2}, Strategy='{strategy}'")
+        logging.info(f"Running configuration {i+1}/{len(param_combinations)}: "
+                     f"Belt Length={belt_length}, Workers={num_worker_pairs*2}, Strategy='{strategy}'")
 
         output: str = run_simulation(belt_length, num_worker_pairs, strategy)
         products_created, missed_a, missed_b, held_a, held_b = parse_output(output)
@@ -130,14 +134,14 @@ def main() -> None:
         -x['efficiency']                 # Tertiary sort: highest efficiency first (negative for descending)
     ))
 
-    print("\n--- Simulation Report ---")
+    logging.info("\n--- Simulation Report ---")
     header: str = f"{'Belt Length':<15} {'Num Workers':<15} {'Strategy':<15} {'Velocity (Products)':<25} {'Efficiency (Products/Worker)':<30} {'Missed A':<10} {'Missed B':<10} {'Held A':<10} {'Held B':<10} {'Waste %':<10}"
-    print(header)
-    print("-" * len(header))
+    logging.info(header)
+    logging.info("-" * len(header))
 
     for res in results:
         waste_str: str = f"{res['waste_percentage']:.1f}%"
-        print(f"{res['belt_length']:<15} {res['num_workers']:<15} {res['strategy']:<15} {res['velocity']:<25} {res['efficiency']:<30.4f} {res['missed_a']:<10} {res['missed_b']:<10} {res['held_a']:<10} {res['held_b']:<10} {waste_str:<10}")
+        logging.info(f"{res['belt_length']:<15} {res['num_workers']:<15} {res['strategy']:<15} {res['velocity']:<25} {res['efficiency']:<30.4f} {res['missed_a']:<10} {res['missed_b']:<10} {res['held_a']:<10} {res['held_b']:<10} {waste_str:<10}")
 
     best_config: Optional[Dict[str, Any]] = next((r for r in results if r['velocity'] > 0), None)
 
@@ -146,14 +150,14 @@ def main() -> None:
         num_worker_pairs = best_config['num_workers'] // 2
         strategy = best_config['strategy']
 
-        print("\n--- Recommended Configuration (Lowest Waste, Highest Efficiency) ---")
-        print("To run the simulation with the least wasteful and most efficient configuration, set these environment variables:")
-        print(f"export BELT_LENGTH={belt_length}")
-        print(f"export NUM_WORKER_PAIRS={num_worker_pairs}")
-        print(f"export STRATEGY={strategy}")
-        print("\nThen run: python simulation.py")
+        logging.info("\n--- Recommended Configuration (Lowest Waste, Highest Efficiency) ---")
+        logging.info("To run the simulation with the least wasteful and most efficient configuration, set these environment variables:")
+        logging.info(f"export BELT_LENGTH={belt_length}")
+        logging.info(f"export NUM_WORKER_PAIRS={num_worker_pairs}")
+        logging.info(f"export STRATEGY={strategy}")
+        logging.info("\nThen run: python simulation.py")
     else:
-        print("\nNo productive configurations found in the simulation runs.")
+        logging.info("\nNo productive configurations found in the simulation runs.")
 
 
 if __name__ == "__main__":

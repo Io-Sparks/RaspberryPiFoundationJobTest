@@ -21,9 +21,9 @@ class Worker:
         self.assembling_time_left = 0
         self.products_made = 0
 
-    def act(self, partner: Worker, belts: List[ConveyorBelt], station_index: int):
+    def act(self, partner: Worker, belt: ConveyorBelt, station_index: int):
         """Delegates the action choice entirely to the strategy."""
-        self.strategy.act(self, partner, belts, station_index)
+        self.strategy.act(self, partner, belt, station_index)
 
     def needs_component(self, component: str) -> bool:
         """

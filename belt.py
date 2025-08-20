@@ -30,10 +30,11 @@ class ConveyorBelt:
 
     def step(self) -> Optional[str]:
         """
-        Moves all items on the belt forward by one position.
+        Moves the belt forward one step.
 
-        The item in the last slot falls off the belt. If it's a component
-        (A or B), it's counted as missed. The first slot becomes empty.
+        The last item is removed and returned. The first slot becomes empty.
+        This method also handles counting missed components ('A' or 'B') and
+        removing finished products ('C') for free.
 
         Returns:
             str or None: The component that fell off the end of the belt, or None.
@@ -42,17 +43,19 @@ class ConveyorBelt:
         last_item = self.slots[-1]
 
         # If the item is a component, increment the appropriate missed counter.
+        # If it's a finished product 'C', it's removed for free and not counted.
         if last_item == A:
             self.missed_a += 1
         elif last_item == B:
             self.missed_b += 1
+        elif last_item == C:
+            # 'C' is removed for free, so we don't count it as missed.
+            pass
 
         # Shift all items on the belt one position to the right.
-        # The last item is discarded, and the first item becomes None.
-        self.slots[1:] = self.slots[:-1]
-        self.slots[0] = None
+        self.slots = [None] + self.slots[:-1]
 
-        return last_item
+        return last_item if last_item != C else None
 
     def step_with_random_item(self) -> Optional[str]:
         """
@@ -64,9 +67,8 @@ class ConveyorBelt:
         Returns:
             str or None: The component that fell off the end of the belt, or None.
         """
-        # First, advance the belt and get the item that fell off.
         last_item = self.step()
-
+        
         # Add a new random item to the newly emptied first slot.
         # There is a 1/3 chance for A, 1/3 for B, and 1/3 for an empty slot.
         rand_val = random.random()

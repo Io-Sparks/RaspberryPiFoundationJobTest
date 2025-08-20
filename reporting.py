@@ -21,7 +21,7 @@ def run_simulation(belt_length: int, num_worker_pairs: int, strategy: str) -> st
     Args:
         belt_length (int): The length of the conveyor belt for this simulation run.
         num_worker_pairs (int): The number of worker pairs for this simulation run.
-        strategy (str): The strategy to use ("individual", "team", or "hivemind").
+        strategy (str): The strategy to use ("individual" or "team").
 
     Returns:
         str: The standard output from the simulation script, which includes the
@@ -73,7 +73,7 @@ def main() -> None:
     combination, collects results, calculates metrics, and prints a sorted report.
     """
     # Define the strategies to be tested.
-    strategies: List[str] = ["individual", "team", "hivemind"]
+    strategies: List[str] = ["individual", "team"]
     simulation_steps: int = 1000
 
     results: List[Dict[str, Any]] = []

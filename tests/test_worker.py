@@ -19,7 +19,7 @@ class TestAssemblyProcess(unittest.TestCase):
         worker.hand_right = B
         
         # The strategy should decide to start the assembly
-        worker.act(partner=None, belts=[ConveyorBelt(1)], station_index=0)
+        worker.act(partner=None, belt=ConveyorBelt(1), station_index=0)
 
         self.assertTrue(worker.is_assembling())
         self.assertEqual(worker.assembling_time_left, Worker.ASSEMBLY_TIME)
@@ -40,7 +40,7 @@ class TestAssemblyProcess(unittest.TestCase):
         belt.push_item(A) # Add a component the worker might otherwise take
 
         # The strategy should do nothing because the worker is busy
-        worker.act(partner=None, belts=[belt], station_index=0)
+        worker.act(partner=None, belt=belt, station_index=0)
 
         # No action should have been taken
         self.assertEqual(worker.assembling_time_left, 3) # Timer is not stepped by act()
@@ -85,7 +85,6 @@ class TestSimulationConstraints(unittest.TestCase):
             Simulation(
                 num_worker_pairs=6, # 12 workers
                 belt_length=10,     # Only 10 spaces
-                num_belts=1,
                 strategy_name="individual"
             )
 
@@ -97,7 +96,6 @@ class TestSimulationConstraints(unittest.TestCase):
             Simulation(
                 num_worker_pairs=5, # 10 workers
                 belt_length=10,     # 10 spaces
-                num_belts=1,
                 strategy_name="individual"
             )
         except ValueError:

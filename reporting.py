@@ -38,7 +38,7 @@ def run_simulation(belt_length: int, num_worker_pairs: int, strategy: str) -> st
     result = subprocess.run(command, capture_output=True, text=True, env=env)
     return result.stdout
 
-def parse_output(output: str) -> Tuple[int, int, int]:
+def parse_output(output: str) -> Tuple[int, int, int, int, int]:
     """
     Parses the JSON output string from the simulation.
 
@@ -49,11 +49,13 @@ def parse_output(output: str) -> Tuple[int, int, int]:
         output (str): The complete standard output string from the simulation.
 
     Returns:
-        tuple[int, int, int]: A tuple containing:
+        tuple[int, int, int, int, int]: A tuple containing:
                                - products_created (int): Total 'C' products made.
                                - missed_a (int): Total 'A' components missed.
                                - missed_b (int): Total 'B' components missed.
-        Returns (0, 0, 0) if parsing fails.
+                               - held_a (int): Total 'A' components held by workers.
+                               - held_b (int): Total 'B' components held by workers.
+        Returns (0, 0, 0, 0, 0) if parsing fails.
     """
     try:
         json_output: str = output.strip().split('\n')[-1]
@@ -61,9 +63,14 @@ def parse_output(output: str) -> Tuple[int, int, int]:
         products: int = data.get("products_created", {}).get("C", 0)
         missed_a: int = data.get("missed_a", 0)
         missed_b: int = data.get("missed_b", 0)
-        return products, missed_a, missed_b
+        held_a: int = data.get("held_a", 0)
+        held_b: int = data.get("held_b", 0)
+        return products, missed_a, missed_b, held_a, held_b
     except (json.JSONDecodeError, IndexError):
-        return 0, 0, 0
+        print("\n--- Error parsing simulation output ---")
+        print(output)
+        print("-----------------------------------------")
+        return 0, 0, 0, 0, 0
 
 def main() -> None:
     """
@@ -95,7 +102,7 @@ def main() -> None:
               f"Belt Length={belt_length}, Workers={num_worker_pairs*2}, Strategy='{strategy}'")
 
         output: str = run_simulation(belt_length, num_worker_pairs, strategy)
-        products_created, missed_a, missed_b = parse_output(output)
+        products_created, missed_a, missed_b, held_a, held_b = parse_output(output)
 
         velocity: int = products_created
         num_workers: int = num_worker_pairs * 2
@@ -112,6 +119,8 @@ def main() -> None:
             "efficiency": efficiency,
             "missed_a": missed_a,
             "missed_b": missed_b,
+            "held_a": held_a,
+            "held_b": held_b,
             "waste_percentage": waste_percentage,
         })
 
@@ -122,13 +131,13 @@ def main() -> None:
     ))
 
     print("\n--- Simulation Report ---")
-    header: str = f"{'Belt Length':<15} {'Num Workers':<15} {'Strategy':<15} {'Velocity (Products)':<25} {'Efficiency (Products/Worker)':<30} {'Missed A':<10} {'Missed B':<10} {'Waste %':<10}"
+    header: str = f"{'Belt Length':<15} {'Num Workers':<15} {'Strategy':<15} {'Velocity (Products)':<25} {'Efficiency (Products/Worker)':<30} {'Missed A':<10} {'Missed B':<10} {'Held A':<10} {'Held B':<10} {'Waste %':<10}"
     print(header)
     print("-" * len(header))
 
     for res in results:
         waste_str: str = f"{res['waste_percentage']:.1f}%"
-        print(f"{res['belt_length']:<15} {res['num_workers']:<15} {res['strategy']:<15} {res['velocity']:<25} {res['efficiency']:<30.4f} {res['missed_a']:<10} {res['missed_b']:<10} {waste_str:<10}")
+        print(f"{res['belt_length']:<15} {res['num_workers']:<15} {res['strategy']:<15} {res['velocity']:<25} {res['efficiency']:<30.4f} {res['missed_a']:<10} {res['missed_b']:<10} {res['held_a']:<10} {res['held_b']:<10} {waste_str:<10}")
 
     best_config: Optional[Dict[str, Any]] = next((r for r in results if r['velocity'] > 0), None)
 

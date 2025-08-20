@@ -105,6 +105,10 @@ class Worker:
         else:
             raise Exception("Both hands are full")
 
+    def receive_item(self, item: str):
+        """Receives an item from a partner, placing it in an empty hand."""
+        self.pickup(item) # Same logic as pickup
+
     def is_holding_product(self) -> bool:
         """Checks if the worker is holding a finished product."""
         return self.hand_left == C or self.hand_right == C

@@ -31,7 +31,7 @@ Didnt add kubernetes and associated checks that would manage a lot of
 scalability aspects as it adds a lot of complexity that is 
 unneccesary at this stage 
 
-16/08
+19/08
 Major project enhancements and bug fixes.
 
 - **Implemented Core Assembly Constraint:** Correctly implemented the critical 4-tick assembly delay for creating products, a key requirement from the brief that was previously missing. This makes the simulation far more realistic.
@@ -51,3 +51,10 @@ Major project enhancements and bug fixes.
 - **Enhanced Documentation:**
     - Created a `.env.example` file to make environment variable configuration clear.
     - Updated all documentation (`README.md` and files in `/gemini`) to reflect the new features, fixes, and a more accurate description of the simulation's rules.
+
+20/08
+
+Added better display output for the simulation
+
+checked the accuracy of the counts as they appear wrong to me.
+

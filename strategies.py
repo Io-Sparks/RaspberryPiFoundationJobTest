@@ -1,3 +1,4 @@
+
 """
 This module defines the AI strategies that workers use to make decisions.
 
@@ -64,10 +65,10 @@ class IndividualStrategy(WorkerStrategy):
 
         # Priority 2: If holding a finished product, find an empty spot to place it.
         if worker.is_holding_product():
-            # Place on the belt at the current station if possible
             if belt.slots[station_index] is None:
                 product = worker.place_product()
                 belt.slots[station_index] = product
+                print(f"  - Worker {worker.worker_id + 1} put assembled {product} in slot {station_index}")
                 return
 
         # Priority 3: If able to assemble, start the assembly process.
@@ -82,6 +83,7 @@ class IndividualStrategy(WorkerStrategy):
             if component_on_belt in needed_components:
                 worker.pickup(component_on_belt)
                 belt.slots[station_index] = None
+                print(f"  - Worker {worker.worker_id + 1} picked up {component_on_belt} from slot {station_index}")
                 return
 
 class TeamStrategy(WorkerStrategy):
@@ -102,6 +104,13 @@ class TeamStrategy(WorkerStrategy):
         # Action: Start assembly (Score: 90)
         if worker.can_assemble():
             possible_actions.append((90, ('start_assembly', None)))
+
+        # Action: Pass a needed component to a partner (Score: 80)
+        if partner and not partner.is_full():
+            for item in [worker.hand_left, worker.hand_right]:
+                if item and partner.needs_component(item):
+                    possible_actions.append((80, ('pass', item)))
+                    break # Pass one item at a time
 
         # Action: Pick up a needed component from the belt (Score: 70)
         if not worker.is_full():
@@ -127,9 +136,19 @@ class TeamStrategy(WorkerStrategy):
         if action_type == 'place_product':
             product = worker.place_product()
             belt.slots[station_index] = product
+            print(f"  - Worker {worker.worker_id + 1} put {product} that it has assembled in slot {station_index}")
         elif action_type == 'start_assembly':
             worker.start_assembly()
+        elif action_type == 'pass':
+            item_to_pass = params
+            if worker.hand_left == item_to_pass:
+                worker.hand_left = None
+            else:
+                worker.hand_right = None
+            partner.receive_item(item_to_pass)
+            print(f"  - Worker {worker.worker_id + 1} passed {item_to_pass} to Worker {partner.worker_id + 1}")
         elif action_type == 'pickup':
             component = params
             worker.pickup(component)
             belt.slots[station_index] = None
+            print(f"  - Worker {worker.worker_id + 1} picked up {component} from slot {station_index}")

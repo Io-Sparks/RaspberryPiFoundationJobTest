@@ -1,0 +1,414 @@
+Generating simulation configurations...
+Running 200 simulations...
+Running configuration 1/200: Belt Length=2, Workers=2, Strategy='individual'
+Running configuration 2/200: Belt Length=2, Workers=2, Strategy='team'
+Running configuration 3/200: Belt Length=3, Workers=2, Strategy='individual'
+Running configuration 4/200: Belt Length=3, Workers=2, Strategy='team'
+Running configuration 5/200: Belt Length=4, Workers=2, Strategy='individual'
+Running configuration 6/200: Belt Length=4, Workers=2, Strategy='team'
+Running configuration 7/200: Belt Length=4, Workers=4, Strategy='individual'
+Running configuration 8/200: Belt Length=4, Workers=4, Strategy='team'
+Running configuration 9/200: Belt Length=5, Workers=2, Strategy='individual'
+Running configuration 10/200: Belt Length=5, Workers=2, Strategy='team'
+Running configuration 11/200: Belt Length=5, Workers=4, Strategy='individual'
+Running configuration 12/200: Belt Length=5, Workers=4, Strategy='team'
+Running configuration 13/200: Belt Length=6, Workers=2, Strategy='individual'
+Running configuration 14/200: Belt Length=6, Workers=2, Strategy='team'
+Running configuration 15/200: Belt Length=6, Workers=4, Strategy='individual'
+Running configuration 16/200: Belt Length=6, Workers=4, Strategy='team'
+Running configuration 17/200: Belt Length=6, Workers=6, Strategy='individual'
+Running configuration 18/200: Belt Length=6, Workers=6, Strategy='team'
+Running configuration 19/200: Belt Length=7, Workers=2, Strategy='individual'
+Running configuration 20/200: Belt Length=7, Workers=2, Strategy='team'
+Running configuration 21/200: Belt Length=7, Workers=4, Strategy='individual'
+Running configuration 22/200: Belt Length=7, Workers=4, Strategy='team'
+Running configuration 23/200: Belt Length=7, Workers=6, Strategy='individual'
+Running configuration 24/200: Belt Length=7, Workers=6, Strategy='team'
+Running configuration 25/200: Belt Length=8, Workers=2, Strategy='individual'
+Running configuration 26/200: Belt Length=8, Workers=2, Strategy='team'
+Running configuration 27/200: Belt Length=8, Workers=4, Strategy='individual'
+Running configuration 28/200: Belt Length=8, Workers=4, Strategy='team'
+Running configuration 29/200: Belt Length=8, Workers=6, Strategy='individual'
+Running configuration 30/200: Belt Length=8, Workers=6, Strategy='team'
+Running configuration 31/200: Belt Length=8, Workers=8, Strategy='individual'
+Running configuration 32/200: Belt Length=8, Workers=8, Strategy='team'
+Running configuration 33/200: Belt Length=9, Workers=2, Strategy='individual'
+Running configuration 34/200: Belt Length=9, Workers=2, Strategy='team'
+Running configuration 35/200: Belt Length=9, Workers=4, Strategy='individual'
+Running configuration 36/200: Belt Length=9, Workers=4, Strategy='team'
+Running configuration 37/200: Belt Length=9, Workers=6, Strategy='individual'
+Running configuration 38/200: Belt Length=9, Workers=6, Strategy='team'
+Running configuration 39/200: Belt Length=9, Workers=8, Strategy='individual'
+Running configuration 40/200: Belt Length=9, Workers=8, Strategy='team'
+Running configuration 41/200: Belt Length=10, Workers=2, Strategy='individual'
+Running configuration 42/200: Belt Length=10, Workers=2, Strategy='team'
+Running configuration 43/200: Belt Length=10, Workers=4, Strategy='individual'
+Running configuration 44/200: Belt Length=10, Workers=4, Strategy='team'
+Running configuration 45/200: Belt Length=10, Workers=6, Strategy='individual'
+Running configuration 46/200: Belt Length=10, Workers=6, Strategy='team'
+Running configuration 47/200: Belt Length=10, Workers=8, Strategy='individual'
+Running configuration 48/200: Belt Length=10, Workers=8, Strategy='team'
+Running configuration 49/200: Belt Length=10, Workers=10, Strategy='individual'
+Running configuration 50/200: Belt Length=10, Workers=10, Strategy='team'
+Running configuration 51/200: Belt Length=11, Workers=2, Strategy='individual'
+Running configuration 52/200: Belt Length=11, Workers=2, Strategy='team'
+Running configuration 53/200: Belt Length=11, Workers=4, Strategy='individual'
+Running configuration 54/200: Belt Length=11, Workers=4, Strategy='team'
+Running configuration 55/200: Belt Length=11, Workers=6, Strategy='individual'
+Running configuration 56/200: Belt Length=11, Workers=6, Strategy='team'
+Running configuration 57/200: Belt Length=11, Workers=8, Strategy='individual'
+Running configuration 58/200: Belt Length=11, Workers=8, Strategy='team'
+Running configuration 59/200: Belt Length=11, Workers=10, Strategy='individual'
+Running configuration 60/200: Belt Length=11, Workers=10, Strategy='team'
+Running configuration 61/200: Belt Length=12, Workers=2, Strategy='individual'
+Running configuration 62/200: Belt Length=12, Workers=2, Strategy='team'
+Running configuration 63/200: Belt Length=12, Workers=4, Strategy='individual'
+Running configuration 64/200: Belt Length=12, Workers=4, Strategy='team'
+Running configuration 65/200: Belt Length=12, Workers=6, Strategy='individual'
+Running configuration 66/200: Belt Length=12, Workers=6, Strategy='team'
+Running configuration 67/200: Belt Length=12, Workers=8, Strategy='individual'
+Running configuration 68/200: Belt Length=12, Workers=8, Strategy='team'
+Running configuration 69/200: Belt Length=12, Workers=10, Strategy='individual'
+Running configuration 70/200: Belt Length=12, Workers=10, Strategy='team'
+Running configuration 71/200: Belt Length=12, Workers=12, Strategy='individual'
+Running configuration 72/200: Belt Length=12, Workers=12, Strategy='team'
+Running configuration 73/200: Belt Length=13, Workers=2, Strategy='individual'
+Running configuration 74/200: Belt Length=13, Workers=2, Strategy='team'
+Running configuration 75/200: Belt Length=13, Workers=4, Strategy='individual'
+Running configuration 76/200: Belt Length=13, Workers=4, Strategy='team'
+Running configuration 77/200: Belt Length=13, Workers=6, Strategy='individual'
+Running configuration 78/200: Belt Length=13, Workers=6, Strategy='team'
+Running configuration 79/200: Belt Length=13, Workers=8, Strategy='individual'
+Running configuration 80/200: Belt Length=13, Workers=8, Strategy='team'
+Running configuration 81/200: Belt Length=13, Workers=10, Strategy='individual'
+Running configuration 82/200: Belt Length=13, Workers=10, Strategy='team'
+Running configuration 83/200: Belt Length=13, Workers=12, Strategy='individual'
+Running configuration 84/200: Belt Length=13, Workers=12, Strategy='team'
+Running configuration 85/200: Belt Length=14, Workers=2, Strategy='individual'
+Running configuration 86/200: Belt Length=14, Workers=2, Strategy='team'
+Running configuration 87/200: Belt Length=14, Workers=4, Strategy='individual'
+Running configuration 88/200: Belt Length=14, Workers=4, Strategy='team'
+Running configuration 89/200: Belt Length=14, Workers=6, Strategy='individual'
+Running configuration 90/200: Belt Length=14, Workers=6, Strategy='team'
+Running configuration 91/200: Belt Length=14, Workers=8, Strategy='individual'
+Running configuration 92/200: Belt Length=14, Workers=8, Strategy='team'
+Running configuration 93/200: Belt Length=14, Workers=10, Strategy='individual'
+Running configuration 94/200: Belt Length=14, Workers=10, Strategy='team'
+Running configuration 95/200: Belt Length=14, Workers=12, Strategy='individual'
+Running configuration 96/200: Belt Length=14, Workers=12, Strategy='team'
+Running configuration 97/200: Belt Length=14, Workers=14, Strategy='individual'
+Running configuration 98/200: Belt Length=14, Workers=14, Strategy='team'
+Running configuration 99/200: Belt Length=15, Workers=2, Strategy='individual'
+Running configuration 100/200: Belt Length=15, Workers=2, Strategy='team'
+Running configuration 101/200: Belt Length=15, Workers=4, Strategy='individual'
+Running configuration 102/200: Belt Length=15, Workers=4, Strategy='team'
+Running configuration 103/200: Belt Length=15, Workers=6, Strategy='individual'
+Running configuration 104/200: Belt Length=15, Workers=6, Strategy='team'
+Running configuration 105/200: Belt Length=15, Workers=8, Strategy='individual'
+Running configuration 106/200: Belt Length=15, Workers=8, Strategy='team'
+Running configuration 107/200: Belt Length=15, Workers=10, Strategy='individual'
+Running configuration 108/200: Belt Length=15, Workers=10, Strategy='team'
+Running configuration 109/200: Belt Length=15, Workers=12, Strategy='individual'
+Running configuration 110/200: Belt Length=15, Workers=12, Strategy='team'
+Running configuration 111/200: Belt Length=15, Workers=14, Strategy='individual'
+Running configuration 112/200: Belt Length=15, Workers=14, Strategy='team'
+Running configuration 113/200: Belt Length=16, Workers=2, Strategy='individual'
+Running configuration 114/200: Belt Length=16, Workers=2, Strategy='team'
+Running configuration 115/200: Belt Length=16, Workers=4, Strategy='individual'
+Running configuration 116/200: Belt Length=16, Workers=4, Strategy='team'
+Running configuration 117/200: Belt Length=16, Workers=6, Strategy='individual'
+Running configuration 118/200: Belt Length=16, Workers=6, Strategy='team'
+Running configuration 119/200: Belt Length=16, Workers=8, Strategy='individual'
+Running configuration 120/200: Belt Length=16, Workers=8, Strategy='team'
+Running configuration 121/200: Belt Length=16, Workers=10, Strategy='individual'
+Running configuration 122/200: Belt Length=16, Workers=10, Strategy='team'
+Running configuration 123/200: Belt Length=16, Workers=12, Strategy='individual'
+Running configuration 124/200: Belt Length=16, Workers=12, Strategy='team'
+Running configuration 125/200: Belt Length=16, Workers=14, Strategy='individual'
+Running configuration 126/200: Belt Length=16, Workers=14, Strategy='team'
+Running configuration 127/200: Belt Length=16, Workers=16, Strategy='individual'
+Running configuration 128/200: Belt Length=16, Workers=16, Strategy='team'
+Running configuration 129/200: Belt Length=17, Workers=2, Strategy='individual'
+Running configuration 130/200: Belt Length=17, Workers=2, Strategy='team'
+Running configuration 131/200: Belt Length=17, Workers=4, Strategy='individual'
+Running configuration 132/200: Belt Length=17, Workers=4, Strategy='team'
+Running configuration 133/200: Belt Length=17, Workers=6, Strategy='individual'
+Running configuration 134/200: Belt Length=17, Workers=6, Strategy='team'
+Running configuration 135/200: Belt Length=17, Workers=8, Strategy='individual'
+Running configuration 136/200: Belt Length=17, Workers=8, Strategy='team'
+Running configuration 137/200: Belt Length=17, Workers=10, Strategy='individual'
+Running configuration 138/200: Belt Length=17, Workers=10, Strategy='team'
+Running configuration 139/200: Belt Length=17, Workers=12, Strategy='individual'
+Running configuration 140/200: Belt Length=17, Workers=12, Strategy='team'
+Running configuration 141/200: Belt Length=17, Workers=14, Strategy='individual'
+Running configuration 142/200: Belt Length=17, Workers=14, Strategy='team'
+Running configuration 143/200: Belt Length=17, Workers=16, Strategy='individual'
+Running configuration 144/200: Belt Length=17, Workers=16, Strategy='team'
+Running configuration 145/200: Belt Length=18, Workers=2, Strategy='individual'
+Running configuration 146/200: Belt Length=18, Workers=2, Strategy='team'
+Running configuration 147/200: Belt Length=18, Workers=4, Strategy='individual'
+Running configuration 148/200: Belt Length=18, Workers=4, Strategy='team'
+Running configuration 149/200: Belt Length=18, Workers=6, Strategy='individual'
+Running configuration 150/200: Belt Length=18, Workers=6, Strategy='team'
+Running configuration 151/200: Belt Length=18, Workers=8, Strategy='individual'
+Running configuration 152/200: Belt Length=18, Workers=8, Strategy='team'
+Running configuration 153/200: Belt Length=18, Workers=10, Strategy='individual'
+Running configuration 154/200: Belt Length=18, Workers=10, Strategy='team'
+Running configuration 155/200: Belt Length=18, Workers=12, Strategy='individual'
+Running configuration 156/200: Belt Length=18, Workers=12, Strategy='team'
+Running configuration 157/200: Belt Length=18, Workers=14, Strategy='individual'
+Running configuration 158/200: Belt Length=18, Workers=14, Strategy='team'
+Running configuration 159/200: Belt Length=18, Workers=16, Strategy='individual'
+Running configuration 160/200: Belt Length=18, Workers=16, Strategy='team'
+Running configuration 161/200: Belt Length=18, Workers=18, Strategy='individual'
+Running configuration 162/200: Belt Length=18, Workers=18, Strategy='team'
+Running configuration 163/200: Belt Length=19, Workers=2, Strategy='individual'
+Running configuration 164/200: Belt Length=19, Workers=2, Strategy='team'
+Running configuration 165/200: Belt Length=19, Workers=4, Strategy='individual'
+Running configuration 166/200: Belt Length=19, Workers=4, Strategy='team'
+Running configuration 167/200: Belt Length=19, Workers=6, Strategy='individual'
+Running configuration 168/200: Belt Length=19, Workers=6, Strategy='team'
+Running configuration 169/200: Belt Length=19, Workers=8, Strategy='individual'
+Running configuration 170/200: Belt Length=19, Workers=8, Strategy='team'
+Running configuration 171/200: Belt Length=19, Workers=10, Strategy='individual'
+Running configuration 172/200: Belt Length=19, Workers=10, Strategy='team'
+Running configuration 173/200: Belt Length=19, Workers=12, Strategy='individual'
+Running configuration 174/200: Belt Length=19, Workers=12, Strategy='team'
+Running configuration 175/200: Belt Length=19, Workers=14, Strategy='individual'
+Running configuration 176/200: Belt Length=19, Workers=14, Strategy='team'
+Running configuration 177/200: Belt Length=19, Workers=16, Strategy='individual'
+Running configuration 178/200: Belt Length=19, Workers=16, Strategy='team'
+Running configuration 179/200: Belt Length=19, Workers=18, Strategy='individual'
+Running configuration 180/200: Belt Length=19, Workers=18, Strategy='team'
+Running configuration 181/200: Belt Length=20, Workers=2, Strategy='individual'
+Running configuration 182/200: Belt Length=20, Workers=2, Strategy='team'
+Running configuration 183/200: Belt Length=20, Workers=4, Strategy='individual'
+Running configuration 184/200: Belt Length=20, Workers=4, Strategy='team'
+Running configuration 185/200: Belt Length=20, Workers=6, Strategy='individual'
+Running configuration 186/200: Belt Length=20, Workers=6, Strategy='team'
+Running configuration 187/200: Belt Length=20, Workers=8, Strategy='individual'
+Running configuration 188/200: Belt Length=20, Workers=8, Strategy='team'
+Running configuration 189/200: Belt Length=20, Workers=10, Strategy='individual'
+Running configuration 190/200: Belt Length=20, Workers=10, Strategy='team'
+Running configuration 191/200: Belt Length=20, Workers=12, Strategy='individual'
+Running configuration 192/200: Belt Length=20, Workers=12, Strategy='team'
+Running configuration 193/200: Belt Length=20, Workers=14, Strategy='individual'
+Running configuration 194/200: Belt Length=20, Workers=14, Strategy='team'
+Running configuration 195/200: Belt Length=20, Workers=16, Strategy='individual'
+Running configuration 196/200: Belt Length=20, Workers=16, Strategy='team'
+Running configuration 197/200: Belt Length=20, Workers=18, Strategy='individual'
+Running configuration 198/200: Belt Length=20, Workers=18, Strategy='team'
+Running configuration 199/200: Belt Length=20, Workers=20, Strategy='individual'
+Running configuration 200/200: Belt Length=20, Workers=20, Strategy='team'
+
+--- Simulation Report ---
+Belt Length     Num Workers     Strategy        Velocity (Products)       Efficiency (Products/Worker)   Missed A   Missed B   Held A     Held B     Waste %
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+17              16              individual      322                       20.1250                        0          3          5          12         0.3%
+16              10              individual      316                       31.6000                        0          9          4          5          0.9%
+20              18              team            329                       18.2778                        4          7          5          7          1.1%
+20              14              individual      333                       23.7857                        11         1          8          5          1.2%
+16              16              individual      317                       19.8125                        12         0          3          12         1.2%
+20              16              individual      312                       19.5000                        11         1          6          11         1.2%
+18              14              individual      322                       23.0000                        5          9          6          5          1.4%
+13              10              individual      313                       31.3000                        14         1          2          9          1.5%
+19              16              individual      324                       20.2500                        15         0          16         3          1.5%
+19              18              individual      313                       17.3889                        16         0          1          17         1.6%
+14              12              individual      314                       26.1667                        3          14         8          3          1.7%
+13              12              individual      312                       26.0000                        0          17         6          7          1.7%
+17              14              individual      304                       21.7143                        0          17         7          4          1.7%
+11              10              individual      321                       32.1000                        7          11         8          2          1.8%
+10              10              individual      310                       31.0000                        4          16         2          6          2.0%
+15              12              individual      309                       25.7500                        8          12         7          6          2.0%
+16              16              team            320                       20.0000                        8          12         2          8          2.0%
+19              16              team            319                       19.9375                        2          19         3          6          2.1%
+18              18              individual      315                       17.5000                        0          21         3          17         2.1%
+20              20              individual      311                       15.5500                        0          22         4          16         2.2%
+16              14              individual      326                       23.2857                        23         0          8          4          2.3%
+14              10              individual      309                       30.9000                        12         12         1          8          2.4%
+20              12              individual      318                       26.5000                        24         0          5          10         2.4%
+16              12              team            305                       25.4167                        22         3          7          4          2.5%
+20              14              team            305                       21.7857                        8          18         6          3          2.6%
+19              14              team            309                       22.0714                        6          21         2          9          2.7%
+15              14              team            320                       22.8571                        9          19         6          8          2.8%
+20              18              individual      328                       18.2222                        0          29         4          14         2.9%
+18              18              team            319                       17.7222                        4          25         4          7          2.9%
+18              12              team            319                       26.5833                        10         21         3          5          3.1%
+19              14              individual      327                       23.3571                        7          24         8          6          3.1%
+18              16              individual      318                       19.8750                        0          31         6          10         3.1%
+13              10              team            312                       31.2000                        29         3          4          3          3.2%
+19              12              individual      304                       25.3333                        13         19         11         3          3.2%
+18              14              team            312                       22.2857                        19         13         2          7          3.2%
+15              10              individual      314                       31.4000                        31         2          8          2          3.3%
+12              12              individual      314                       26.1667                        0          33         2          11         3.3%
+18              8               individual      316                       39.5000                        9          25         6          4          3.4%
+17              8               individual      309                       38.6250                        6          28         7          1          3.4%
+18              16              team            318                       19.8750                        28         6          11         2          3.4%
+20              16              team            304                       19.0000                        30         4          5          3          3.4%
+20              10              individual      309                       30.9000                        1          35         2          8          3.6%
+20              12              team            294                       24.5000                        35         1          5          3          3.6%
+15              14              individual      309                       22.0714                        36         0          4          10         3.6%
+12              8               individual      309                       38.6250                        30         7          1          8          3.7%
+14              10              team            313                       31.3000                        20         17         2          4          3.7%
+17              12              individual      310                       25.8333                        15         23         6          5          3.8%
+14              14              individual      309                       22.0714                        25         13         6          9          3.8%
+12              10              team            308                       30.8000                        0          40         2          2          4.0%
+17              12              team            314                       26.1667                        31         10         7          2          4.1%
+17              10              individual      286                       28.6000                        35         7          4          9          4.2%
+16              12              individual      309                       25.7500                        1          41         7          2          4.2%
+18              12              individual      300                       25.0000                        7          35         4          9          4.2%
+18              10              individual      302                       30.2000                        2          41         1          9          4.3%
+16              14              team            305                       21.7857                        28         15         0          8          4.3%
+17              16              team            302                       18.8750                        38         5          3          8          4.3%
+18              8               team            293                       36.6250                        20         25         1          4          4.5%
+17              10              team            306                       30.6000                        1          45         2          5          4.6%
+14              14              team            283                       20.2143                        10         36         5          3          4.6%
+10              8               individual      308                       38.5000                        9          38         2          8          4.7%
+12              10              individual      312                       31.2000                        35         12         8          3          4.7%
+10              10              team            295                       29.5000                        18         30         3          7          4.8%
+11              10              team            300                       30.0000                        8          41         3          5          4.9%
+19              18              team            304                       16.8889                        49         0          8          5          4.9%
+20              20              team            301                       15.0500                        49         0          7          3          4.9%
+20              8               individual      301                       37.6250                        13         37         1          5          5.0%
+14              12              team            297                       24.7500                        38         12         4          5          5.0%
+19              8               team            297                       37.1250                        40         12         5          1          5.2%
+16              10              team            307                       30.7000                        34         18         6          3          5.2%
+13              12              team            309                       25.7500                        21         32         7          0          5.3%
+15              10              team            309                       30.9000                        51         3          6          4          5.4%
+17              6               individual      292                       48.6667                        43         14         5          1          5.7%
+20              10              team            301                       30.1000                        22         35         5          2          5.7%
+12              12              team            306                       25.5000                        37         20         2          6          5.7%
+15              8               individual      316                       39.5000                        33         25         4          4          5.8%
+11              8               individual      309                       38.6250                        42         16         2          6          5.8%
+17              8               team            307                       38.3750                        4          54         2          5          5.8%
+15              8               team            297                       37.1250                        46         13         7          1          5.9%
+11              6               individual      300                       50.0000                        28         32         5          2          6.0%
+8               8               individual      292                       36.5000                        13         47         7          2          6.0%
+13              6               individual      294                       49.0000                        22         41         3          3          6.3%
+16              8               individual      306                       38.2500                        31         32         4          4          6.3%
+9               6               individual      297                       49.5000                        41         23         3          2          6.4%
+14              8               team            305                       38.1250                        17         47         5          4          6.4%
+19              8               individual      292                       36.5000                        12         53         4          4          6.5%
+11              8               team            283                       35.3750                        31         35         4          6          6.6%
+18              10              team            301                       30.1000                        10         56         1          6          6.6%
+17              14              team            291                       20.7857                        0          66         0          7          6.6%
+10              6               individual      309                       51.5000                        51         16         3          5          6.7%
+19              6               individual      286                       47.6667                        35         33         4          3          6.8%
+19              12              team            282                       23.5000                        54         14         4          7          6.8%
+19              10              individual      290                       29.0000                        15         54         4          7          6.9%
+16              6               team            294                       49.0000                        46         24         3          1          7.0%
+15              6               individual      293                       48.8333                        28         42         4          3          7.0%
+18              6               individual      292                       48.6667                        48         22         2          5          7.0%
+15              12              team            285                       23.7500                        33         38         4          6          7.1%
+15              6               team            278                       46.3333                        40         32         1          5          7.2%
+9               8               individual      294                       36.7500                        51         21         5          2          7.2%
+13              8               individual      283                       35.3750                        33         39         8          3          7.2%
+12              8               team            294                       36.7500                        21         52         3          4          7.3%
+7               6               individual      283                       47.1667                        35         39         5          2          7.4%
+20              6               individual      300                       50.0000                        42         33         2          5          7.5%
+13              8               team            275                       34.3750                        21         54         3          2          7.5%
+8               6               individual      275                       45.8333                        49         28         1          4          7.7%
+9               8               team            289                       36.1250                        27         50         5          2          7.7%
+10              8               team            285                       35.6250                        25         53         7          2          7.8%
+19              10              team            292                       29.2000                        39         39         3          5          7.8%
+14              6               team            287                       47.8333                        18         61         4          3          7.9%
+16              6               individual      284                       47.3333                        14         66         5          2          8.0%
+10              6               team            287                       47.8333                        41         42         1          4          8.3%
+6               6               individual      285                       47.5000                        40         44         3          6          8.4%
+14              8               individual      309                       38.6250                        46         39         3          7          8.5%
+13              6               team            283                       47.1667                        54         33         2          4          8.7%
+12              6               individual      284                       47.3333                        59         29         6          1          8.8%
+6               6               team            277                       46.1667                        57         33         1          1          9.0%
+20              8               team            301                       37.6250                        0          90         4          3          9.0%
+19              6               team            290                       48.3333                        41         51         1          3          9.2%
+16              8               team            280                       35.0000                        45         47         6          0          9.2%
+8               8               team            295                       36.8750                        50         44         5          1          9.4%
+12              6               team            296                       49.3333                        73         22         3          2          9.5%
+14              6               individual      282                       47.0000                        61         39         5          3          10.0%
+18              6               team            267                       44.5000                        78         22         1          3          10.0%
+8               6               team            289                       48.1667                        24         77         0          4          10.1%
+9               6               team            278                       46.3333                        53         50         4          3          10.3%
+17              4               individual      266                       66.5000                        50         56         3          1          10.6%
+11              6               team            284                       47.3333                        48         59         4          1          10.7%
+8               4               individual      268                       67.0000                        60         53         3          3          11.3%
+14              4               individual      271                       67.7500                        50         65         0          4          11.5%
+12              4               individual      266                       66.5000                        70         45         4          1          11.5%
+17              6               team            271                       45.1667                        58         57         2          3          11.5%
+20              6               team            275                       45.8333                        34         84         4          2          11.8%
+7               6               team            266                       44.3333                        60         58         4          2          11.8%
+10              4               individual      271                       67.7500                        58         62         4          3          12.0%
+20              4               individual      267                       66.7500                        47         79         3          1          12.6%
+7               4               team            265                       66.2500                        91         36         3          1          12.7%
+9               4               individual      256                       64.0000                        82         46         2          2          12.8%
+11              4               team            278                       69.5000                        58         71         3          3          12.9%
+7               4               individual      254                       63.5000                        66         63         4          2          12.9%
+14              4               team            269                       67.2500                        64         66         2          2          13.0%
+5               4               individual      264                       66.0000                        78         52         2          4          13.0%
+18              4               team            249                       62.2500                        64         70         1          3          13.4%
+11              4               individual      266                       66.5000                        87         49         2          3          13.6%
+4               4               individual      263                       65.7500                        60         76         1          4          13.6%
+15              4               individual      252                       63.0000                        58         78         2          2          13.6%
+18              4               individual      264                       66.0000                        68         70         2          4          13.8%
+16              4               individual      262                       65.5000                        63         77         1          3          14.0%
+19              4               individual      271                       67.7500                        88         56         3          2          14.4%
+4               4               team            268                       67.0000                        92         53         1          2          14.5%
+10              4               team            252                       63.0000                        82         64         3          2          14.6%
+13              4               team            267                       66.7500                        61         86         4          2          14.7%
+15              4               team            256                       64.0000                        96         51         4          1          14.7%
+16              4               team            263                       65.7500                        80         68         2          3          14.8%
+13              4               individual      262                       65.5000                        59         89         1          2          14.8%
+9               4               team            254                       63.5000                        68         82         1          3          15.0%
+20              4               team            251                       62.7500                        72         80         2          1          15.2%
+6               4               individual      266                       66.5000                        77         76         2          3          15.3%
+5               4               team            249                       62.2500                        94         62         4          1          15.6%
+19              4               team            248                       62.0000                        66         90         2          3          15.6%
+6               4               team            264                       66.0000                        82         77         1          2          15.9%
+12              4               team            248                       62.0000                        62         98         1          2          16.0%
+17              4               team            251                       62.7500                        83         80         3          2          16.3%
+8               4               team            246                       61.5000                        58         107        2          3          16.5%
+11              2               individual      178                       89.0000                        165        110        0          1          27.5%
+15              2               individual      177                       88.5000                        157        124        2          2          28.1%
+14              2               individual      173                       86.5000                        140        152        2          2          29.2%
+14              2               team            179                       89.5000                        161        132        1          2          29.3%
+19              2               team            186                       93.0000                        140        154        1          2          29.4%
+20              2               team            174                       87.0000                        140        155        1          2          29.5%
+7               2               team            182                       91.0000                        164        132        2          1          29.6%
+16              2               individual      180                       90.0000                        164        133        2          1          29.7%
+4               2               team            177                       88.5000                        162        135        0          1          29.7%
+12              2               team            176                       88.0000                        134        164        0          1          29.8%
+6               2               individual      182                       91.0000                        155        145        0          2          30.0%
+19              2               individual      179                       89.5000                        135        165        1          2          30.0%
+10              2               team            174                       87.0000                        149        152        0          2          30.1%
+3               2               team            180                       90.0000                        151        151        0          2          30.2%
+18              2               team            185                       92.5000                        143        161        2          0          30.4%
+13              2               individual      176                       88.0000                        174        132        1          0          30.6%
+2               2               individual      177                       88.5000                        153        154        2          2          30.7%
+8               2               team            177                       88.5000                        189        119        1          1          30.8%
+8               2               individual      174                       87.0000                        150        158        1          2          30.8%
+12              2               individual      177                       88.5000                        166        143        1          1          30.9%
+7               2               individual      166                       83.0000                        165        144        1          2          30.9%
+6               2               team            182                       91.0000                        160        150        1          1          31.0%
+9               2               individual      182                       91.0000                        165        146        2          0          31.1%
+16              2               team            178                       89.0000                        153        158        2          2          31.1%
+5               2               team            178                       89.0000                        157        156        2          1          31.3%
+4               2               individual      170                       85.0000                        177        138        2          2          31.5%
+17              2               team            175                       87.5000                        174        142        2          1          31.6%
+13              2               team            174                       87.0000                        173        143        2          2          31.6%
+2               2               team            169                       84.5000                        152        166        0          2          31.8%
+3               2               individual      165                       82.5000                        184        135        2          1          31.9%
+10              2               individual      173                       86.5000                        158        162        1          2          32.0%
+18              2               individual      171                       85.5000                        156        164        1          2          32.0%
+20              2               individual      168                       84.0000                        168        155        2          2          32.3%
+15              2               team            173                       86.5000                        150        178        2          0          32.8%
+17              2               individual      170                       85.0000                        160        168        1          2          32.8%
+5               2               individual      169                       84.5000                        189        140        2          1          32.9%
+11              2               team            170                       85.0000                        191        140        2          0          33.1%
+9               2               team            165                       82.5000                        168        174        2          1          34.2%
+
+--- Recommended Configuration (Lowest Waste, Highest Efficiency) ---
+To run the simulation with the least wasteful and most efficient configuration, set these environment variables:
+export BELT_LENGTH=17
+export NUM_WORKER_PAIRS=8
+export STRATEGY=individual
+
+Then run: python simulation.py

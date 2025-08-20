@@ -1,0 +1,1777 @@
+Step 1
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 2
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 3
+  - Worker 1 picked up A from slot 0
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 4
+  - Worker 1 passed A to Worker 2
+  - Worker 2 passed A to Worker 1
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 5
+  - Worker 1 passed A to Worker 2
+  - Worker 2 passed A to Worker 1
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  A  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 6
+  - Worker 1 picked up B from slot 0
+  - Worker 3 picked up A from slot 1
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 7
+  - Worker 3 passed A to Worker 4
+  - Worker 4 passed A to Worker 3
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 8
+  - Worker 2 picked up B from slot 0
+  - Worker 3 passed A to Worker 4
+  - Worker 4 passed A to Worker 3
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 9
+  - Worker 3 passed A to Worker 4
+  - Worker 4 passed A to Worker 3
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 10
+  - Worker 3 picked up B from slot 1
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 11
+  - Worker 1 picked up A from slot 0
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: C                | LeftHand: A                | LeftHand: _
+       | RightHand: A               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (4)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 12
+  - Worker 1 passed A to Worker 2
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: C                | LeftHand: A                | LeftHand: _
+       | RightHand: _               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (3)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 13
+  - Worker 1 put C that it has assembled in slot 0
+  - Worker 4 picked up B from slot 1
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: A                | LeftHand: _
+       | RightHand: _               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (2)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: B                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 14
+  - Worker 1 picked up B from slot 0
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: A                | LeftHand: _
+       | RightHand: _               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (1)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: B                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 15
+  - Worker 3 put C that it has assembled in slot 1
+  - Worker 4 passed B to Worker 3
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [  C  ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 16
+  - Worker 2 put C that it has assembled in slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [  B  ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 17
+  - Worker 1 passed B to Worker 2
+  - Worker 2 passed B to Worker 1
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 picked up B from slot 2
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 18
+  - Worker 1 passed B to Worker 2
+  - Worker 2 passed B to Worker 1
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [  B  ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 19
+  - Worker 1 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  B  ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 20
+  - Worker 2 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 21
+  - Worker 2 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 22
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 23
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  A  ]           |          [  B  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 24
+  - Worker 1 picked up B from slot 0
+  - Worker 3 picked up A from slot 1
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: C                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 25
+  - Worker 1 put C that it has assembled in slot 0
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (4)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 26
+  - Worker 2 picked up B from slot 0
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (3)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: C                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 27
+  - Worker 2 put C that it has assembled in slot 0
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (2)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 28
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (1)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 29
+  - Worker 1 picked up A from slot 0
+  - Worker 3 put C that it has assembled in slot 1
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: _                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 30
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: _                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 31
+  - Worker 3 picked up B from slot 1
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 32
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  B  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 33
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 34
+  - Worker 1 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: C                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  B  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 35
+  - Worker 1 put C that it has assembled in slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 36
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 37
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 38
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 39
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 40
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [  B  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 41
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [  B  ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 42
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [  B  ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 43
+  - Worker 1 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  B  ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 44
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 45
+  - Worker 2 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 46
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 47
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 48
+  - Worker 1 put C that it has assembled in slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [  B  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 49
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 50
+  - Worker 2 put C that it has assembled in slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 51
+  - Worker 1 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 52
+  - Worker 1 passed B to Worker 2
+  - Worker 2 passed B to Worker 1
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 53
+  - Worker 1 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 54
+  - Worker 2 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 55
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 56
+  - Worker 2 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  B  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 57
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 58
+  - Worker 1 put C that it has assembled in slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [  B  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 59
+  - Worker 1 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 60
+  - Worker 1 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: B                | LeftHand: _                | LeftHand: _
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 61
+  - Worker 2 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: C                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 62
+  - Worker 2 put C that it has assembled in slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 63
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 64
+  - Worker 2 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  B  ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 65
+  - Worker 1 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: C                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 66
+  - Worker 1 put C that it has assembled in slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 67
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 68
+  - Worker 1 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 69
+  - Worker 2 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: C                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 70
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: C                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 71
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  A  ]           |          [  B  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: C                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 72
+  - Worker 2 put C that it has assembled in slot 0
+  - Worker 3 picked up A from slot 1
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 73
+  - Worker 1 picked up B from slot 0
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: C                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (4)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 74
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: C                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (3)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 75
+  - Worker 1 put C that it has assembled in slot 0
+  - Worker 4 picked up B from slot 1
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (2)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: B                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 76
+  - Worker 1 picked up A from slot 0
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (1)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: B                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 77
+  - Worker 3 put C that it has assembled in slot 1
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [  C  ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 78
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  B  ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 79
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 80
+  - Worker 2 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  B  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 81
+  - Worker 1 put C that it has assembled in slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [  B  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 82
+  - Worker 1 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 83
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: _               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 84
+  - Worker 1 picked up A from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 85
+  - Worker 2 picked up B from slot 0
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: C                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 86
+  - Worker 3 passed B to Worker 4
+  - Worker 4 passed B to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  A  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: C                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 87
+  - Worker 3 picked up A from slot 1
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  A  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: C                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 88
+  - Worker 2 put C that it has assembled in slot 0
+  - Worker 4 picked up A from slot 1
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: B                | LeftHand: B                | LeftHand: B
+       | RightHand: A               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (4)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 89
+  - Worker 1 picked up B from slot 0
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: C                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (3)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 90
+  - Worker 2 picked up A from slot 0
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: C                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (2)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 91
+  - Worker 1 put C that it has assembled in slot 0
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: B                | LeftHand: B
+       | RightHand: B               | RightHand: A               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (1)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 92
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: C                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: A                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 93
+  - Worker 3 put C that it has assembled in slot 1
+  - Worker 4 passed A to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: A                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 94
+  - Worker 3 passed A to Worker 4
+  - Worker 4 passed A to Worker 3
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: A                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: A                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 95
+  - Worker 2 picked up B from slot 0
+  - Worker 3 picked up B from slot 1
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: _                | LeftHand: A                | LeftHand: B
+       | RightHand: B               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: C                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 96
+  - Worker 1 picked up A from slot 0
+  - Worker 2 put C that it has assembled in slot 0
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: A                | LeftHand: B
+       | RightHand: B               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (4)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  C  ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 97
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: A                | LeftHand: B
+       | RightHand: B               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (4)         | AssemblyTimer: (3)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 98
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: A                | LeftHand: B
+       | RightHand: B               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (3)         | AssemblyTimer: (2)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [  C  ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 99
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: A                | LeftHand: B
+       | RightHand: B               | RightHand: B               | RightHand: _
+       | AssemblyTimer: (2)         | AssemblyTimer: (1)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [     ]           |          [     ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+Step 100
+  - Worker 3 put C that it has assembled in slot 1
+  - Worker 5 passed B to Worker 6
+  - Worker 6 passed B to Worker 5
+
+       | Worker: 1                  | Worker: 3                  | Worker: 5
+       | LeftHand: A                | LeftHand: _                | LeftHand: B
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (1)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+       |                            |                            |
+Belt:  |          [  B  ]           |          [  C  ]           |          [     ]
+       |                            |                            |
+       | Worker: 2                  | Worker: 4                  | Worker: 6
+       | LeftHand: _                | LeftHand: _                | LeftHand: _
+       | RightHand: B               | RightHand: _               | RightHand: _
+       | AssemblyTimer: (0)         | AssemblyTimer: (0)         | AssemblyTimer: (0)
+
+
+--- Simulation Results ---
+  - Finished Products: 21
+  - Missed A: 0
+  - Missed B: 16
+  - Held A: 1
+  - Held B: 3
+------------------------

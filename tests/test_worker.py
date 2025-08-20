@@ -1,8 +1,9 @@
 
 import unittest
 from worker import Worker, A, B, C
-from belt import Belt
+from belt import ConveyorBelt
 from strategies import IndividualStrategy
+from simulation import Simulation
 
 class TestAssemblyProcess(unittest.TestCase):
     """
@@ -18,7 +19,7 @@ class TestAssemblyProcess(unittest.TestCase):
         worker.hand_right = B
         
         # The strategy should decide to start the assembly
-        worker.act(partner=None, belts=[Belt(1)], station_index=0)
+        worker.act(partner=None, belts=[ConveyorBelt(1)], station_index=0)
 
         self.assertTrue(worker.is_assembling())
         self.assertEqual(worker.assembling_time_left, Worker.ASSEMBLY_TIME)
@@ -35,15 +36,15 @@ class TestAssemblyProcess(unittest.TestCase):
         worker.start_assembly() # Manually start
         worker.assembling_time_left = 3 # Set timer to be in-progress
 
-        belt = Belt(5)
-        belt.push(A) # Add a component the worker might otherwise take
+        belt = ConveyorBelt(5)
+        belt.push_item(A) # Add a component the worker might otherwise take
 
         # The strategy should do nothing because the worker is busy
         worker.act(partner=None, belts=[belt], station_index=0)
 
         # No action should have been taken
         self.assertEqual(worker.assembling_time_left, 3) # Timer is not stepped by act()
-        self.assertEqual(belt.items, [A, None, None, None, None])
+        self.assertEqual(belt.slots, [A, None, None, None, None])
         self.assertEqual(worker.hand_left, A)
 
     def test_assembly_finishes_correctly_after_stepping(self):
@@ -70,6 +71,37 @@ class TestAssemblyProcess(unittest.TestCase):
         self.assertEqual(worker.hand_left, C) # Hands now have the finished product
         self.assertIsNone(worker.hand_right)
         self.assertEqual(worker.products_made, 1)
+
+class TestSimulationConstraints(unittest.TestCase):
+    """
+    Tests the physical constraints of the simulation setup.
+    """
+
+    def test_raises_error_for_too_many_workers(self):
+        """
+        Verify that the Simulation raises a ValueError if there are more workers than belt spaces.
+        """
+        with self.assertRaises(ValueError):
+            Simulation(
+                num_worker_pairs=6, # 12 workers
+                belt_length=10,     # Only 10 spaces
+                num_belts=1,
+                strategy_name="individual"
+            )
+
+    def test_allows_valid_number_of_workers(self):
+        """
+        Verify that the Simulation initializes successfully with a valid number of workers.
+        """
+        try:
+            Simulation(
+                num_worker_pairs=5, # 10 workers
+                belt_length=10,     # 10 spaces
+                num_belts=1,
+                strategy_name="individual"
+            )
+        except ValueError:
+            self.fail("Simulation raised ValueError unexpectedly for a valid configuration.")
 
 if __name__ == '__main__':
     unittest.main()

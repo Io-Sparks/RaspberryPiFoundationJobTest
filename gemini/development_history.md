@@ -55,3 +55,7 @@ This document records the major bugs and the design decisions made to fix them. 
 14. **Implementation of Core Assembly Time Requirement**:
     *   **Problem**: A key requirement was missed: the assembly process was instantaneous. The rules state that assembly should take 4 simulation steps, during which the worker is busy.
     *   **Decision**: Implemented the 4-tick assembly delay. The `Worker` class was updated with an `assembly_timer`. All strategies (`individual`, `team`, `hivemind`) were modified to start this timer instead of creating a product instantly. The main `simulation.py` loop was updated to decrement the timer for all workers at each step. This makes the simulation significantly more realistic and accurate.
+
+15. **Correcting Invalid Configurations**:
+    *   **Bug**: The reporting script was generating and testing physically impossible scenarios where there were more workers than available space on the conveyor belt.
+    *   **Decision**: Implemented a two-level fix. First, the logic in `reporting.py` was corrected to ensure it only generates valid configurations. Second, a validation check was added to the `Simulation` class constructor in `simulation.py` to make it raise a `ValueError` if an invalid configuration is ever provided. This was then verified with a new unit test.

@@ -29,10 +29,11 @@ class Simulation:
             strategy_name (str): The name of the strategy to use ("individual", "team", or "hivemind").
 
         Raises:
-            ValueError: If the configuration is invalid (e.g., too many workers).
+            ValueError: If the configuration is invalid (e.g., too many workers for the belt size).
         """
-        if num_worker_pairs > belt_length - 1:
-            raise ValueError("Number of worker pairs cannot exceed belt length - 1.")
+        # Enforce the physical constraint that the number of workers cannot exceed the belt length.
+        if num_worker_pairs * 2 > belt_length:
+            raise ValueError(f"Configuration error: The number of workers ({num_worker_pairs * 2}) cannot exceed the belt length ({belt_length}).")
 
         self.num_worker_pairs: int = num_worker_pairs
         self.belt_length: int = belt_length

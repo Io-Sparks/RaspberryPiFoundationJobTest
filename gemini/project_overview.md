@@ -12,6 +12,7 @@ The primary goal of this project is to simulate a factory production line to ide
     *   Running the main simulation loop for a specified number of steps. This includes advancing the assembly timers for all workers at each step.
     *   Printing the state of the simulation at each step.
     *   Outputting final statistics in JSON format.
+    *   **Self-validating**: The simulation will raise a `ValueError` if initialized with more workers than the belt can physically hold.
 
 *   **`belt.py`**: Defines the `ConveyorBelt` class.
     *   A belt is a fixed-length series of slots.
@@ -29,7 +30,7 @@ The primary goal of this project is to simulate a factory production line to ide
     *   `HiveMindStrategy`: A "perfect information" strategy that executes the single most optimal move for the entire system at each step, coordinating all workers.
 
 *   **`reporting.py`**: A script for running batch simulations and analyzing performance.
-    *   It runs the simulation across a wide and dynamic range of configurations.
+    *   It runs the simulation across a wide and dynamic range of configurations, ensuring that all tested scenarios are physically possible (i.e., number of workers does not exceed belt capacity).
     *   It calculates and reports on key metrics: Velocity (products made), Efficiency (products per worker), and Waste % (missed components).
     *   It intelligently sorts the results, prioritizing productive configurations with the lowest waste and highest efficiency.
 

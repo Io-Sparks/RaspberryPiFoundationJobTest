@@ -42,7 +42,7 @@ class WorkerStrategy(ABC):
 
         Args:
             all_workers (List[Worker]): A list of all workers in the simulation.
-            belts (List[ConveyorBelt]): The list of all conveyor belts.
+            belts (List[List[ConveyorBelt]]): The list of all conveyor belts.
         """
         # Default implementation is empty.
         # This method is only implemented by strategies that manage the entire system.
@@ -64,32 +64,27 @@ class IndividualStrategy(WorkerStrategy):
         if worker.is_assembling():
             return
 
-        # Priority 2: If holding a finished product, find any empty spot to place it.
+        # Priority 2: If holding a finished product, find an empty spot to place it.
         if worker.is_holding_product():
-            for i, belt in enumerate(belts):
-                if None in belt.slots:
-                    slot_idx = belt.slots.index(None)
-                    product = worker.place_product()
-                    belt.slots[slot_idx] = product
-                    # print(f"{worker.worker_id} placed {product} on belt {i} slot {slot_idx}.")
-                    return
+            # Place on the belt at the current station if possible
+            if belts[0].slots[station_index] is None:
+                product = worker.place_product()
+                belts[0].slots[station_index] = product
+                return
 
         # Priority 3: If able to assemble, start the assembly process.
         if worker.can_assemble():
             worker.start_assembly()
-            # print(f"{worker.worker_id} started assembling.")
             return
 
         # Priority 4: If hands are not full, take a needed component from the belt.
         if not worker.is_full():
             needed_components = worker.needs()
-            for component in needed_components:
-                for i, belt in enumerate(belts):
-                    if belt.slots[station_index] == component:
-                        worker.pickup(component)
-                        belts[i].slots[station_index] = None
-                        # print(f"{worker.worker_id} picked up {component}.")
-                        return
+            component_on_belt = belts[0].slots[station_index]
+            if component_on_belt in needed_components:
+                worker.pickup(component_on_belt)
+                belts[0].slots[station_index] = None
+                return
 
 class TeamStrategy(WorkerStrategy):
     """
@@ -97,40 +92,34 @@ class TeamStrategy(WorkerStrategy):
     This strategy allows for collaboration with a worker's direct partner.
     """
     def _get_best_action(self, worker: Worker, partner: Worker, belts: List[ConveyorBelt], station_index: int) -> Optional[Tuple[str, Any]]:
-        # If worker is busy assembling, no other actions are possible.
         if worker.is_assembling():
             return None
 
         possible_actions: List[Tuple[int, Tuple[str, Any]]] = []
 
         # Action: Place a finished product (Score: 100)
-        if worker.is_holding_product():
-            for i, belt in enumerate(belts):
-                if None in belt.slots:
-                    slot_idx = belt.slots.index(None)
-                    possible_actions.append((100, ('place_product', (i, belt, slot_idx))))
+        if worker.is_holding_product() and belts[0].slots[station_index] is None:
+            possible_actions.append((100, ('place_product', None)))
 
         # Action: Start assembly (Score: 90)
         if worker.can_assemble():
             possible_actions.append((90, ('start_assembly', None)))
 
-        # Action: Give a surplus component to a partner who needs it (Score: 70)
-        if not partner.is_full() and worker.hand_left is not None and worker.hand_left == worker.hand_right:
-            component_to_give = worker.hand_right
-            if partner.needs_component(component_to_give):
-                possible_actions.append((70, ('give_component', component_to_give)))
+        # Action: Pass a component to a partner who can use it to assemble (Score: 80)
+        component_to_pass = None
+        if worker.is_holding(A) and not worker.is_holding(B) and partner.is_holding(B) and not partner.is_full():
+            component_to_pass = A
+        elif worker.is_holding(B) and not worker.is_holding(A) and partner.is_holding(A) and not partner.is_full():
+            component_to_pass = B
+        
+        if component_to_pass:
+            possible_actions.append((80, ('give_component', component_to_pass)))
 
-        # Action: Pick up a component from the belt (Score: 50-65)
+        # Action: Pick up a needed component from the belt (Score: 70)
         if not worker.is_full():
-            for belt_idx, belt in enumerate(belts):
-                for slot_idx, component in enumerate(belt.slots):
-                    if component in [A, B]:
-                        distance = abs(station_index - slot_idx)
-                        base_score = 60 - distance * 5
-                        if worker.needs_component(component):
-                            possible_actions.append((base_score + 5, ('pickup', (component, belt_idx, slot_idx))))
-                        elif partner.needs_component(component):
-                            possible_actions.append((base_score, ('pickup', (component, belt_idx, slot_idx))))
+            component_on_belt = belts[0].slots[station_index]
+            if component_on_belt in worker.needs():
+                possible_actions.append((70, ('pickup', component_on_belt)))
 
         if not possible_actions:
             return None
@@ -145,19 +134,22 @@ class TeamStrategy(WorkerStrategy):
 
         action_type, params = action_details
         if action_type == 'place_product':
-            belt_idx, belt, slot_idx = params
             product = worker.place_product()
-            belt.slots[slot_idx] = product
+            belts[0].slots[station_index] = product
         elif action_type == 'start_assembly':
             worker.start_assembly()
         elif action_type == 'give_component':
             component_to_give = params
-            worker.hand_right = None # Assuming the surplus is in the right hand
+            # Correctly remove the component from the giving worker's hand
+            if worker.hand_left == component_to_give:
+                worker.hand_left = None
+            elif worker.hand_right == component_to_give:
+                worker.hand_right = None
             partner.pickup(component_to_give)
         elif action_type == 'pickup':
-            component, belt_idx, slot_idx = params
+            component = params
             worker.pickup(component)
-            belts[belt_idx].slots[slot_idx] = None
+            belts[0].slots[station_index] = None
 
 
 class HiveMindStrategy(WorkerStrategy):
@@ -170,23 +162,32 @@ class HiveMindStrategy(WorkerStrategy):
 
     def hive_act(self, all_workers: List[Worker], belts: List[ConveyorBelt]) -> None:
         possible_actions: List[Tuple[int, str, Any]] = []
+        belt = belts[0] # Assuming one belt for now
 
-        for worker in all_workers:
+        for i, worker in enumerate(all_workers):
+            station_index = i // 2
             if worker.is_assembling():
-                continue # This worker is busy and cannot perform any actions.
+                continue
 
             # PRIORITY 1: Place a finished product (Score 100)
-            if worker.is_holding_product():
-                for i, belt in enumerate(belts):
-                    if None in belt.slots:
-                        slot_idx = belt.slots.index(None)
-                        possible_actions.append((100, 'place', (worker, i, belt, slot_idx)))
+            if worker.is_holding_product() and belt.slots[station_index] is None:
+                possible_actions.append((100, 'place', (i, station_index)))
 
             # PRIORITY 2: Start assembling a product (Score 90)
             if worker.can_assemble():
-                possible_actions.append((90, 'start_assembly', worker))
+                possible_actions.append((90, 'start_assembly', i))
 
-            # ... (rest of the hive mind logic for picking/passing components) ...
+            # PRIORITY 3: Take a final component to assemble (Score 70)
+            if not worker.is_full() and worker.is_holding_one_component():
+                component_on_belt = belt.slots[station_index]
+                if component_on_belt in worker.needs():
+                    possible_actions.append((70, 'pickup', (i, component_on_belt, station_index)))
+            
+            # PRIORITY 4: Take any component if hands are empty (Score 60)
+            if worker.is_empty():
+                component_on_belt = belt.slots[station_index]
+                if component_on_belt in [A, B]:
+                    possible_actions.append((60, 'pickup', (i, component_on_belt, station_index)))
 
         if not possible_actions:
             return
@@ -196,21 +197,16 @@ class HiveMindStrategy(WorkerStrategy):
         _, action_type, params = best_action
 
         if action_type == 'place':
-            worker, belt_idx, belt, slot_idx = params
+            worker_index, station_index = params
+            worker = all_workers[worker_index]
             product = worker.place_product()
-            belt.slots[slot_idx] = product
+            belt.slots[station_index] = product
         elif action_type == 'start_assembly':
-            worker = params
+            worker_index = params
+            worker = all_workers[worker_index]
             worker.start_assembly()
         elif action_type == 'pickup':
-            worker, component, belt_idx, slot_idx = params
+            worker_index, component, station_index = params
+            worker = all_workers[worker_index]
             worker.pickup(component)
-            belts[belt_idx].slots[slot_idx] = None
-        elif action_type == 'give':
-            giver, receiver, component = params
-            # This needs a more robust way to handle which hand gives
-            if giver.hand_left == component:
-                giver.hand_left = None
-            else:
-                giver.hand_right = None
-            receiver.pickup(component)
+            belt.slots[station_index] = None

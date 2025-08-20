@@ -12,6 +12,7 @@ This document outlines the key assumptions and design constraints that have been
 6.  **Assembly Requires 'A' and 'B'**: A finished product 'C' can only be created by assembling one 'A' and one 'B' component.
 7.  **One Action Per Step**: A worker can only perform one significant action per simulation step (e.g., pickup, place, or start assembly). The progression of the assembly timer itself does not count as an action.
 8.  **Flexible Product Placement**: A worker holding a finished product can place it in **any available empty slot** on the conveyor belt. This is a critical rule to prevent deadlocks in high-density configurations.
+9.  **Physical Capacity Constraint**: The simulation enforces the physical limitation of the factory floor. The total number of workers (`num_worker_pairs * 2`) cannot exceed the `belt_length`. The simulation will raise a `ValueError` if this constraint is violated.
 
 ## Code and Design
 
@@ -23,3 +24,4 @@ This document outlines the key assumptions and design constraints that have been
     *   Calculate and display metrics for velocity, efficiency (per worker), and waste.
     *   Filter out and demote any configuration that produces zero products.
     *   Sort viable configurations to find the optimal balance of low waste and high efficiency.
+    *   Generate only physically possible configurations where the number of workers does not exceed the belt's capacity.

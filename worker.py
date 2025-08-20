@@ -57,9 +57,21 @@ class Worker:
         needed = list(all_components - held_components)
         return needed
 
+    def is_empty(self) -> bool:
+        """Checks if both hands are empty."""
+        return self.hand_left is None and self.hand_right is None
+
     def is_full(self) -> bool:
         """Checks if both hands are holding components."""
         return self.hand_left is not None and self.hand_right is not None
+
+    def is_holding(self, component: str) -> bool:
+        """Checks if the worker is holding a specific component."""
+        return self.hand_left == component or self.hand_right == component
+
+    def is_holding_one_component(self) -> bool:
+        """Checks if the worker is holding exactly one component."""
+        return (self.hand_left is not None) != (self.hand_right is not None)
 
     def can_assemble(self) -> bool:
         """Checks if the worker has both components and is not already assembling."""

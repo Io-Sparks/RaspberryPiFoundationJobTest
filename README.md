@@ -35,6 +35,7 @@ python simulation.py --belt-length 10 --num-pairs 3 --strategy team
 - `--num-pairs`: The number of worker pairs. The total number of workers will be this value times two.
 - `--strategy`: The AI strategy to use (`individual` or `team`).
 - `--steps`: The number of time steps to run the simulation for.
+- `--assembly-time`: The number of steps required for a worker to assemble a product.
 - `--log-level`: The level of detail for the output (`DEBUG`, `INFO`, `WARNING`, `ERROR`).
 
 ### Generating a Performance Report

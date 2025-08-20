@@ -2,6 +2,65 @@
 
 This project is a Python-based simulation of a factory floor designed to assemble a product 'C' from two components, 'A' and 'B'. It's a tool for exploring the efficiency of different worker strategies and factory layouts.
 
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+*   Python 3.12 or later
+*   `pip` for installing Python packages
+*   `virtualenv` (optional, but recommended)
+*   Docker (optional, for containerized execution)
+
+### Installation
+
+You can run the simulation in a Python virtual environment or as a Docker container.
+
+**Option 1: Virtual Environment (Recommended for development)**
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone <repository-url>
+    cd factory-simulation
+    ```
+
+2.  **Create and activate a virtual environment:**
+
+    ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
+
+3.  **Install the required packages:**
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+**Option 2: Docker**
+
+1.  **Build the Docker image:**
+
+    From the root of the project directory, run the following command:
+
+    ```bash
+    docker build -t factory-simulation .
+    ```
+
+2.  **Run the simulation in a Docker container:**
+
+    ```bash
+    docker run factory-simulation
+    ```
+
+    You can also override the default simulation parameters using environment variables:
+
+    ```bash
+    docker run -e BELT_LENGTH=20 -e NUM_WORKER_PAIRS=10 factory-simulation
+    ```
+
 ## Core Concepts
 
 - **Conveyor Belt**: A central belt that carries components 'A' and 'B'. New components are added at the start, and any that aren't picked up fall off the end.

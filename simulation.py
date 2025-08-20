@@ -11,7 +11,7 @@ from worker import Worker
 
 class Simulation:
     def __init__(self, num_worker_pairs, belt_length, strategy_name):
-        if num_worker_pairs * 2 > belt_length:
+        if num_worker_pairs > belt_length:
             raise ValueError("Number of workers cannot exceed the belt length.")
 
         self.num_worker_pairs = num_worker_pairs

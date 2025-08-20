@@ -106,23 +106,18 @@ class TeamStrategy(WorkerStrategy):
         if worker.can_assemble():
             possible_actions.append((90, ('start_assembly', None)))
 
-        # Action: Pass a component to a partner to complete their pair (Score: 80)
-        if partner and partner.is_holding_one_component():
-            partner_component = partner.hand_left or partner.hand_right
-            component_to_pass = None
-            if partner_component == A and worker.is_holding(B):
-                component_to_pass = B
-            elif partner_component == B and worker.is_holding(A):
-                component_to_pass = A
-            
-            if component_to_pass:
-                possible_actions.append((80, ('pass', component_to_pass)))
-
-        # Action: Pick up a needed component from the belt (Score: 70)
+        # Action: Pick up a needed component from the belt (Score: 80)
         if not worker.is_full():
             component_on_belt = belt.slots[station_index]
             if component_on_belt in worker.needs():
-                possible_actions.append((70, ('pickup', component_on_belt)))
+                possible_actions.append((80, ('pickup', component_on_belt)))
+
+        # Action: Pass a needed component to a partner (Score: 70)
+        if partner and not partner.is_full():
+            for item in [worker.hand_left, worker.hand_right]:
+                if item and partner.needs_component(item):
+                    possible_actions.append((70, ('pass', item)))
+                    break # Pass one item at a time
 
         if not possible_actions:
             return None

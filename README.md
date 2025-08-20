@@ -1,94 +1,48 @@
 # Factory Simulation
 
-This project simulates a factory floor with conveyor belts and workers who assemble products from components.
+This project is a Python-based simulation of a factory floor designed to assemble a product 'C' from two components, 'A' and 'B'. It's a tool for exploring the efficiency of different worker strategies and factory layouts.
 
-## Core Simulation Rules
+## Core Concepts
 
-- **Components**: The simulation uses two primary components, 'A' and 'B'.
-- **Assembly**: A worker must collect one of each component to begin assembly.
-- **Assembly Time**: The assembly process is not instantaneous. Once a worker has both components, they enter an "assembling" state for **4 simulation steps**. During this time, they cannot interact with the belt or other workers.
-- **Finished Product**: After the 4-step assembly period, the 'A' and 'B' components are consumed and replaced with a finished product, 'C'. The worker is then free to place the 'C' on the belt.
+- **Conveyor Belt**: A central belt that carries components 'A' and 'B'. New components are added at the start, and any that aren't picked up fall off the end.
+- **Workers**: Workers are stationed in pairs along the belt. Their goal is to pick up one 'A' and one 'B', assemble them into a 'C' (which takes 4 time steps), and then place the 'C' back on the belt.
+- **Strategies**: Workers use an AI strategy to decide their actions at each step. The simulation supports different strategies to compare their effectiveness.
 
-## Configuration
+## Features
 
-The simulation is configured using environment variables. For local development, you can create a `.env` file in the project root to manage these settings.
-
-**`.env.example`:**
-```
-# The length of the conveyor belt.
-BELT_LENGTH=15
-
-# The number of pairs of workers.
-NUM_WORKER_PAIRS=3
-
-# The strategy for the workers (individual, team, or hivemind).
-STRATEGY=team
-
-# The number of steps to run the simulation for.
-STEPS=100
-
-# Set to "true" to suppress step-by-step output.
-QUIET=false
-```
-
-### Environment Variables:
-
-*   `BELT_LENGTH`: The number of slots on the conveyor belt. (Default: `10`)
-*   `NUM_WORKER_PAIRS`: The number of worker pairs. (Default: `3`)
-*   `STRATEGY`: The behavior of the workers. Can be `individual`, `team`, or `hivemind`. (Default: `individual`)
-*   `STEPS`: The total number of steps the simulation will run. (Default: `100`)
-*   `QUIET`: If set to `true`, the detailed step-by-step log will be hidden. (Default: `false`)
+- **Two Worker Strategies**:
+    - `individual`: A simple, rule-based strategy where workers act independently.
+    - `team`: A more advanced, score-based strategy where workers can collaborate by passing components to each other.
+- **Configurable Simulation**: Easily change the belt length, number of workers, and strategy via command-line arguments or environment variables.
+- **Detailed Visual Output**: A rich, step-by-step visual representation of the factory floor, showing the belt, worker inventories, and assembly timers.
+- **Comprehensive Reporting**: A `reporting.py` script that runs hundreds of simulations with different configurations to find the most efficient and least wasteful setups.
+- **Structured Logging**: The simulation uses Python's `logging` module, allowing for clean, filterable output (e.g., INFO, DEBUG, ERROR).
 
 ## How to Run
 
-### 1. Local Execution
+### Running a Single Simulation
 
-First, install the required Python packages:
-
-```bash
-pip install -r requirements.txt
-```
-
-Create a `.env` file (you can copy `.env.example`) and modify the values as needed. Then, run the simulation:
+You can run a single simulation with custom parameters using `simulation.py`.
 
 ```bash
-python simulation.py
+# Example: Run with a belt of length 10, 3 pairs of workers, and the 'team' strategy
+python simulation.py --belt-length 10 --num-pairs 3 --strategy team
 ```
 
-### 2. Docker
+**Command-Line Arguments:**
 
-The project includes a `Dockerfile` for building a containerized version of the simulation.
+- `--belt-length`: The number of slots on the conveyor belt.
+- `--num-pairs`: The number of worker pairs. The total number of workers will be this value times two.
+- `--strategy`: The AI strategy to use (`individual` or `team`).
+- `--steps`: The number of time steps to run the simulation for.
+- `--log-level`: The level of detail for the output (`DEBUG`, `INFO`, `WARNING`, `ERROR`).
 
-**Build the image:**
-```bash
-docker build -t factory-simulation .
-```
+### Generating a Performance Report
 
-**Run the container with default settings:**
-```bash
-docker run factory-simulation
-```
-
-**Override configuration at runtime:**
-You can override the default environment variables set in the Dockerfile.
-```bash
-docker run -e STRATEGY=individual -e BELT_LENGTH=20 factory-simulation
-```
-
-## Reporting
-
-To analyze the performance of different configurations, run the `reporting.py` script:
+To find the best factory configuration, run the `reporting.py` script. This will test many different combinations of belt length, worker numbers, and strategies and print a sorted report of the most effective setups.
 
 ```bash
 python reporting.py
 ```
 
-This will test various combinations of settings and print a summary report, including a recommendation for the most efficient configuration found.
-
-## Recommended Configuration
-
-Based on the latest performance analysis, the recommended configuration is:
-
-*   **BELT_LENGTH**: `18`
-*   **NUM_WORKER_PAIRS**: `9`
-*   **STRATEGY**: `hivemind`
+The script will also recommend the best configuration to use as environment variables for future runs.

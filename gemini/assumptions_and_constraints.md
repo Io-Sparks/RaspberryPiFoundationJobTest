@@ -1,27 +1,31 @@
 # Assumptions and Constraints
 
-This document outlines the key assumptions and design constraints that have been established through trial and error during the development of the simulation.
+This document outlines the key assumptions and constraints that define the rules of the factory simulation. These rules govern the behavior of the components, the workers, and the environment itself.
 
-## Simulation Logic
+## Simulation Environment
 
-1.  **Assembly Takes Time**: The assembly process is not instantaneous. Once a worker has collected both an 'A' and a 'B' component, they enter an "assembling" state for **4 simulation steps**. During this period, the worker is considered "busy" and cannot perform any other actions (e.g., picking up or placing items).
-2.  **Workers Act Before Source**: In a single simulation step, all workers complete their actions *before* a new component is generated at the source. This is critical for allowing workers to place finished products onto the belt.
-3.  **Slot 0 is the Source**: The first slot (index 0) of any conveyor belt is exclusively for generating new components. Workers **must not** place any items in this slot.
-4.  **Worker Stations Start at Slot 1**: To enforce the "Slot 0 is the Source" rule, worker stations are assigned starting from slot 1.
-5.  **Workers Only Pick Up Raw Materials**: Workers should only pick up components 'A' and 'B'. They must never pick up a finished product ('C').
-6.  **Assembly Requires 'A' and 'B'**: A finished product 'C' can only be created by assembling one 'A' and one 'B' component.
-7.  **One Action Per Step**: A worker can only perform one significant action per simulation step (e.g., pickup, place, or start assembly). The progression of the assembly timer itself does not count as an action.
-8.  **Flexible Product Placement**: A worker holding a finished product can place it in **any available empty slot** on the conveyor belt. This is a critical rule to prevent deadlocks in high-density configurations.
-9.  **Physical Capacity Constraint**: The simulation enforces the physical limitation of the factory floor. The total number of workers (`num_worker_pairs * 2`) cannot exceed the `belt_length`. The simulation will raise a `ValueError` if this constraint is violated.
+*   **Discrete Time**: The simulation proceeds in discrete time steps. All actions and events occur within these steps.
+*   **Single Conveyor Belt**: There is only one conveyor belt in the factory.
+*   **Worker Placement**: Workers are always placed in pairs. Each pair is assigned to a single station along the conveyor belt, starting from slot 0.
+*   **Worker Capacity**: The total number of workers (`num_worker_pairs * 2`) cannot exceed the total number of slots on the conveyor belt.
 
-## Code and Design
+## Conveyor Belt Mechanics
 
-1.  **Strategy Pattern with Interface**: The worker's decision-making logic is decoupled from its state. All AI/logic must be implemented within a class in `strategies.py` that inherits from the `WorkerStrategy` Abstract Base Class. This enforces a contract for all strategies.
-2.  **Teamwork via Scoring**: The `TeamStrategy` is implemented using a scoring system. It evaluates all possible actions a worker can take and executes the highest-scoring one. This allows for dynamic and context-aware decision-making.
-3.  **Configuration via Environment Variables**: The application is configured using environment variables (e.g., `BELT_LENGTH`, `STRATEGY`), not command-line arguments. This is a core design principle for portability and alignment with containerization best practices.
-4.  **Clean JSON Output**: The `simulation.py` script must produce a clean, single-line JSON object as its final output to be compatible with the `reporting.py` script.
-5.  **Intelligent Reporting**: The `reporting.py` script is the primary tool for analysis. It must:
-    *   Calculate and display metrics for velocity, efficiency (per worker), and waste.
-    *   Filter out and demote any configuration that produces zero products.
-    *   Sort viable configurations to find the optimal balance of low waste and high efficiency.
-    *   Generate only physically possible configurations where the number of workers does not exceed the belt's capacity.
+*   **Constant Speed**: The belt moves forward exactly one position at every time step.
+*   **Component Generation**: At every time step, a new component—chosen randomly between 'A' and 'B'—is placed at the beginning of the belt (slot 0).
+*   **Component Loss**: Any component that reaches the end of the belt without being picked up falls off and is counted as a "missed" component.
+
+## Worker Behavior
+
+*   **Two Hands**: Each worker has two hands and can hold a maximum of two items (one per hand).
+*   **Assembly Process**: 
+    *   A worker must be holding one 'A' and one 'B' to begin assembly.
+    *   The assembly process takes a fixed duration of **4 time steps**.
+    *   A worker cannot perform any other actions (like picking up or passing items) while they are assembling a product.
+*   **Product Creation**: Once the 4-step assembly is complete, the 'A' and 'B' components are consumed, and a finished product 'C' is created in the worker's hands.
+*   **Strategy-Driven**: A worker's actions are determined entirely by their assigned AI strategy (`IndividualStrategy` or `TeamStrategy`). They have no independent decision-making ability.
+
+## Strategy Constraints
+
+*   **Individual Strategy**: This is a simple, rule-based strategy. Workers act purely on their own, without any awareness or collaboration with their partner.
+*   **Team Strategy**: This is a more complex, score-based strategy. It allows a worker to collaborate with their direct partner at the same station by passing components. It does not allow for collaboration with workers at other stations.

@@ -1,61 +1,21 @@
-# Development History (The Story So Far)
+# Development History
 
-This document records the major bugs and the design decisions made to fix them. It serves as a log of what has gone wrong to avoid repeating mistakes.
+This document outlines the iterative development process of the factory simulation project, from initial bug fixes to final refactoring and feature enhancements.
 
-1.  **Initial State**: The simulation was not producing any finished products. Workers were not picking up items.
-    *   **Decision**: Corrected worker pickup logic in `simulation.py`.
+1.  **Initial Bug Squashing**: The initial phase focused on fixing a series of `TypeError` and `AttributeError` exceptions. This involved correcting how the `ConveyorBelt` object was being accessed in the strategies and aligning the method signatures in the unit tests to match the updated code.
 
-2.  **'C' Appearing at the Start of the Belt**:
-    *   **Decision**: Reserved slot 0 for the component source and shifted worker stations to start from slot 1.
+2.  **Fixing Core Simulation Logic**: After the initial errors were resolved, a critical logic bug was discovered where the simulation would run without producing any finished products. The investigation revealed that the simulation's main loop was not advancing the workers' assembly timers correctly. The order of operations in the `run_step` method was adjusted to ensure the assembly process could complete successfully.
 
-3.  **Workers Picking Up Finished Products**:
-    *   **Decision**: Added a check to ensure workers only pick up components 'A' or 'B'.
+3.  **Improving Reporting and Debugging**: To make the simulation easier to understand and debug, several enhancements were made:
+    *   The final report was corrected to accurately count the total number of products created throughout the entire simulation, rather than just a snapshot at the end.
+    *   Logging was added to the strategies to announce when a worker picked up a component or placed a finished product, providing a clear, human-readable trace of the key events.
 
-4.  **Major Refactoring for Flexibility**:
-    *   **Problem**: The worker logic was hardcoded in `simulation.py`, making it impossible to experiment with different AI behaviors.
-    *   **Decision**: Introduced the **Strategy Pattern**. Created `strategies.py` to hold all worker AI. This was a pivotal change for the project's architecture.
+4.  **Enhancing the Visual Display**: The command-line output was significantly improved to provide a better user experience:
+    *   A detailed, multi-line pictorial representation of the factory floor was created, showing the state of each worker (hands, assembly timer) and their position relative to the conveyor belt.
+    *   Whitespace and formatting were adjusted to make the visual layout clean and easy to read.
 
-5.  **The Great Stagnation (Zero Finished Products)**:
-    *   **Bug**: The `worker.needs()` method was fundamentally flawed, causing workers to get stuck if they picked up component 'B' before 'A'.
-    *   **Decision**: Rewrote the `needs()` method to be hand-agnostic. This was a critical fix to enable basic production.
+5.  **Refactoring for Maintainability**: The final phase focused on improving the project's structure and code quality:
+    *   **Logging Framework**: All `print()` statements were replaced with Python's standard `logging` module. This introduced structured logging with different severity levels (e.g., INFO, ERROR) and made the output consistent and filterable.
+    *   **Separation of Concerns**: The presentation logic was separated from the simulation logic. A new `views.py` module was created to handle all the formatting of the visual output, making the core `simulation.py` module cleaner and more focused on its primary responsibility.
 
-6.  **Reporting and Analysis Implementation**:
-    *   **Need**: A way to systematically test different configurations and measure performance.
-    *   **Decision**: Created `reporting.py`. This script automates running the simulation with various parameters and generates a performance report. Initially, it had bugs where it failed to parse the simulation output.
-    *   **Fix**: Modified `simulation.py` to output a clean JSON summary, which the reporting script could reliably parse.
-
-7.  **The Failed `TeamStrategy` (Multiple Attempts)**:
-    *   **Bug**: The initial `TeamStrategy` was non-functional, producing zero products. The logic was flawed, causing workers to either do nothing or give away components they needed themselves.
-    *   **Decision**: Rewrote the `TeamStrategy` multiple times. The final, successful version uses a scoring system (`_get_best_action`). Workers evaluate all possible moves (pickup, give, assemble, place) and choose the one with the highest score, making their decision-making dynamic and intelligent.
-
-8.  **Defensive Programming Enhancement**:
-    *   **Need**: To ensure future strategies would adhere to the required structure.
-    *   **Decision**: Implemented an Abstract Base Class (`WorkerStrategy`) in `strategies.py`. This acts as an "interface," forcing any new strategy to implement the `act()` method, preventing incomplete strategies from being used.
-
-9.  **Critical Simulation Logic Flaw**:
-    *   **Bug**: With a very short belt (e.g., length 1), no products were ever made. The simulation was adding a new component to the belt *before* letting workers place their finished products, meaning the placement slot was never empty.
-    *   **Decision**: Corrected the order of operations in `simulation.py`. Workers now act *before* the new component is added, fixing the bug and making the simulation more realistic.
-
-10. **Refining Performance Metrics**:
-    *   **Need**: The initial "efficiency" metric (products per step) wasn't very insightful.
-    *   **Decision**: Changed the efficiency calculation to be **products per worker**. Added **waste tracking** (missed components) to the report. This provides a much more comprehensive view for identifying the truly optimal configuration.
-
-11. **Configuration Refactoring for Portability**:
-    *   **Problem**: The simulation was configured via command-line arguments, which is inflexible for containerized environments.
-    *   **Decision**: Refactored the entire application to use **environment variables** for configuration, with support for `.env` files for local development. This aligns with the Twelve-Factor App methodology and makes the application much more portable and easier to manage in different environments.
-
-12. **The High-Density Deadlock**:
-    *   **Bug**: A critical flaw was discovered where high-density configurations (e.g., 20 workers on a 20-slot belt) produced zero products. Workers could only place finished goods on their single assigned belt slot, which was always occupied.
-    *   **Decision**: Fixed the logic in `strategies.py`. Workers with a finished product can now place it in **any available empty slot** on the belt. This resolved the deadlock and made the simulation results for high-density scenarios accurate.
-
-13. **Intelligent Reporting Refinements**:
-    *   **Problem**: The report was promoting configurations that produced zero products but had low waste, which is not useful.
-    *   **Decision**: The sorting logic in `reporting.py` was significantly improved. It now **separates non-productive configurations** and moves them to the bottom of the report, ensuring the focus is always on viable and efficient strategies.
-
-14. **Implementation of Core Assembly Time Requirement**:
-    *   **Problem**: A key requirement was missed: the assembly process was instantaneous. The rules state that assembly should take 4 simulation steps, during which the worker is busy.
-    *   **Decision**: Implemented the 4-tick assembly delay. The `Worker` class was updated with an `assembly_timer`. All strategies (`individual`, `team`, `hivemind`) were modified to start this timer instead of creating a product instantly. The main `simulation.py` loop was updated to decrement the timer for all workers at each step. This makes the simulation significantly more realistic and accurate.
-
-15. **Correcting Invalid Configurations**:
-    *   **Bug**: The reporting script was generating and testing physically impossible scenarios where there were more workers than available space on the conveyor belt.
-    *   **Decision**: Implemented a two-level fix. First, the logic in `reporting.py` was corrected to ensure it only generates valid configurations. Second, a validation check was added to the `Simulation` class constructor in `simulation.py` to make it raise a `ValueError` if an invalid configuration is ever provided. This was then verified with a new unit test.
+6.  **Final Bug Fixes and Feature Polish**: The last step involved fixing a failing unit test related to worker placement validation and correcting a critical flaw in the `TeamStrategy`'s scoring system that was preventing it from producing any products. The action scores were adjusted to ensure workers prioritized completing their own assemblies.
